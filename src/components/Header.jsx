@@ -8,7 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 function Header() {
   const opener = document.querySelector('.list');
   const HandleResp = ()=>{
-    opener.classList.toggle('open');
+    opener.classList.toggle('open')
   }
   
   return (
