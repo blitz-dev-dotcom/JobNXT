@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Monomaniac+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+body{
+    
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.defaultfont{
+    font-family: "Inter", sans-serif;
+}
+
+.header{
+    height: 70px;
+    width: 100%;
+    background-color: #161A42;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    display: flex;
+    gap: 10px;
+    margin-left: 3%;
+}
+.ham{
+    display: none;
+}
+.logo > h2{
+    font-family: "Monomaniac One", sans-serif;
+    color: white;
+    font-weight: 200;
+    align-self: center;
+}
+.list{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-self: center;
+    margin-right: 3%;
+    
+}
+.list > li{
+    align-self: center;
+    color: white;
+    
+}
+.logo-img{
+    height: 60px ;
+    width: 60px ;
+}
+
+.link{
+    align-self: center;
+    color: white;
+    font-family: "Inter", sans-serif;
+    padding: 8px 15px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.link:nth-child(4){
+    background-color: #CB9714;
+    border-radius: 3px;
+}
+#user{
+    font-size: 25px;
+}
+.active{
+    animation: border .2s ease-in;
+}
+
+/* footer */
+.footer{
+    height: 10vh;
+    background-color: rgb(201, 214, 225);
+}
+/* Index */
+.index{
+    height: 100vh;
+    width: 100%;
+}
+.indexpad{
+    height: 80%;
+    width: 90%;
+    display: flex;
+}
+.col1{
+    height: 100%;
+    width: 70%;
+    flex-direction: column;
+    gap: 20px;
+}
+.col1 > h1{
+    font-size: 50px;
+    letter-spacing: 1px;
+}
+.col1 > h1 >span{
+    color: #CB9714;
+}
+.col1 > p{
+    padding: 0px 50px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.col2{
+    height: 90%;
+    width: 1px;
+    background-color: rgb(160, 151, 151);
+    align-self: center;
+}
+.col3{
+    height: 100%;
+    width: 30%;
+}
+.col3 > p{
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 400;
+    justify-self: center;
+    margin-left: 30%;
+    
+}
+.indeximg{
+    width: 405px;
+    height: 447px;
+    padding: 20px 10px 10px 20px;
+}
+.indexbut{
+    display: flex;
+    gap: 20px;
+    padding: 20px ;
+    margin-left: 10%;
+   
+}
+.hirebut{
+    color: white;
+    width: 150px;
+    height: 40px;
+    background-color: #161A42;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease-in;
+}
+.hirebut:focus{
+    border: 2px solid white;
+    outline: 2px solid rgb(81, 78, 78);
+}
+
+/* Login */
+.login{
+    height: 100vh;
+    width: 100%;
+}
+/* GetHired */
+.details{
+    height: 100vh;
+    width: 100%;
+    cursor: none;
+}
+.card{
+    height: 90%;
+    width: 75%;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='13' ry='13' stroke='%23333' stroke-width='5' stroke-dasharray='8%2c 25' stroke-dashoffset='3' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 13px;
+    display: flex;
+}
+.card1{
+    height: 100%;
+    width: 50%;
+}
+.card2{
+    height: 100%;
+    width: 50%;
+    background-image: url('../src/assets/res.svg');
+    outline: 7px solid white;
+    background-size: cover;
+    border-top-right-radius: 26px;
+    border-bottom-right-radius: 26px;
+    flex-direction: column;
+    font-weight: 400;
+    
+}
+.butpad{
+    display: flex;
+    padding: 0px 10% 0 10%;
+}
+.cardbut{
+    border: none;
+    border-bottom: 1px solid rgb(121, 117, 117);
+    outline: none;
+    background-color: transparent;
+    padding: 30px 30px 10px 30px;  
+    font-family: "Inter", sans-serif;
+    font-size: .8rem;
+    cursor: none;
+    transition: all .1s linear;
+}
+.cardbut:focus{
+    border-bottom: 2px solid #CB9714;
+}
+.cardRender{
+    height: 90%;
+    padding: 0 10% 0 10%;
+}
+/* FillDEtails */
+.filldetails{
+    display: flex;
+    flex-direction: column;
+}
+#pseudo{
+    height: 1px ;
+    width: 100%;
+    border:.5px solid #636161;
+    margin: 5% 0 5% 0;
+}
+.cancel{
+    display: flex;
+    justify-content: space-between;
+}
+.filldetails > input{
+    height: 40px;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid black;
+    outline: none;
+    transition: all .2s ease-in;
+}
+.filldetails > input:focus{
+    border: 1px solid black;
+    box-shadow: 2px 2px 12px rgb(144, 141, 141);
+}
+.filldetails >h1{
+    padding: 10% 2% 2% 2%;
+}
+.filldetails > p{
+    padding: 2% 2% 2% 2%;
+}
+.filldetails > label{
+    padding: 2% 0 2% 0;
+    font-family: "Inter", sans-serif;
+}
+.cancel > p{
+    align-self: center;
+   
+}
+.cancel > p:hover{
+    color: #CB9714;
+}
+.cancel > button{
+    letter-spacing: 1px;
+}
+.pointer{
+    height: 20px;
+    width: 20px;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 10px 10px 30px rgba(255, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+/* UploadResume */
+.upload{
+    font-family: "Inter", sans-serif;
+}
+.upload > h1{
+    padding: 10% 2% 2% 2%;
+}
+.upload > p{
+    color: rgb(172, 164, 164);
+    padding: 2% 2% 2% 2%;
+}
+.upload >h3{
+    font-family: "Josefin Sans", sans-serif !important;
+    padding: 7% 2% 2% 2%;
+}
+.uploadfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed rgb(169, 163, 163);
+    color: rgb(172, 164, 164);
+    border-bottom: none;
+    height: 150px;
+    
+}
+.uploadsystem{
+    display: flex;
+    border: 1px solid black;
+    gap: 20px;
+    align-items: center;
+}
+.uploadsystem > h3{
+    font-weight: 400;
+}
+#fileup{
+    font-size: 40px;
+    color:#CB9714;
+}
+#filesystem{
+    font-size: 40px;
+    color:#CB9714;
+}
+.customUpload{
+    font-family: "Josefin Sans", sans-serif !important;
+    background-color: #dfcc9d;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    padding:10px;
+}
+.overflow{
+    width: 60%;
+    overflow: scroll;
+
+}
+.overflow::-webkit-scrollbar{
+    display: none;
+}
+@media (max-width:640px){
+    /* header */
+    .header{
+        height: 70px;
+        width: 100%;
+        background-color: #161A42;
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .logo{
+        display: flex;
+        gap: 10px;
+        margin-left: 3%;
+    }
+    .ham{
+        display: block;
+        font-size: 25px;
+        color: #fafafa;
+        align-self: center;
+        margin-right: 5%;
+        z-index: 2;
+        cursor: pointer;
+    }
+    .logo > h2{
+        font-family: "Monomaniac One", sans-serif;
+        color: white;
+        font-weight: 200;
+        align-self: center;
+    }
+    .list{
+        position: fixed;
+        background-color: rgb(66, 62, 62,0.8);
+        backdrop-filter: blur(20px);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        clip-path: circle(100px at 90% -10%);
+        flex-direction: column-reverse;
+        transition: all 1s ease-out;
+        padding-bottom: 50px;
+    }
+    .list.open{
+        clip-path: circle(1000px);
+    }
+    .list > li{
+        align-self: center;
+        color: white;
+        
+    }
+    .logo-img{
+        height: 60px ;
+        width: 60px ;
+    }
+    
+    .link{
+        align-self: center;
+        color: white;
+        font-family: "Inter", sans-serif;
+        padding: 8px 15px;
+        border-radius: 2px;
+        text-decoration: none;
+    }
+    
+    .link:nth-child(4){
+        background-color: #CB9714;
+        border-radius: 3px;
+    }
+    #user{
+        font-size: 25px;
+    }
+    .active{
+        animation: border .2s ease-in;
+    }
+}
+
+

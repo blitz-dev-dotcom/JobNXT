@@ -1,0 +1,25 @@
+.err{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    
+}
+.err > img{
+    height: 100%;
+    width: 50%;
+    background-size: cover;
+}
+.hoem{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.errlink{
+    text-decoration: none;
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 200; 
+    color: rgb(91, 88, 88);
+}
