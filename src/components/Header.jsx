@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import logo from "../assets/logo.svg";
 import { FaRegCircleUser } from "react-icons/fa6";
 import '../App.css';
@@ -6,10 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { RxHamburgerMenu } from "react-icons/rx";
 
 function Header() {
-  const opener = document.querySelector('.list');
-  const HandleResp = ()=>{
-    opener.classList.toggle('open')
-  }
+  const [Open , setOpen] = useState(false);
   
   return (
     <div className="header">
@@ -17,8 +14,8 @@ function Header() {
         <img src={logo} alt="" className='logo-img' />
         <h2 >jobnxt</h2>
         </div>
-        < RxHamburgerMenu className='ham' onClick={()=>{HandleResp( )}}/>
-        <ul className='list'>
+        < RxHamburgerMenu className='ham' onClick={()=>{setOpen(!Open)}}/>
+        <ul className={Open? 'list open' : 'list'}>
             <NavLink to="/profile" className='link'>My Profile</NavLink>
             <NavLink to="/about" className='link'>About Us</NavLink>
             <NavLink to="/contact" className='link'>Contact Us</NavLink>
