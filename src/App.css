@@ -839,6 +839,10 @@ body{
         border: 1px solid rgb(229, 213, 213);
     }
     .col3{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 100%;
     }
     .col3 > p{
