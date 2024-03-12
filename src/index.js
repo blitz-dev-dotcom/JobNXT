@@ -10,6 +10,9 @@ import Login from './components/Login';
 import Layout from './components/Layout';
 import Index from './components/Index';
 import GetHired from './components/GetHired';
+import { AuthProvider } from './context.js/AuthContext';
+
+
 
 const route = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout/>} errorElement={<ErrorPage />}>
@@ -20,9 +23,9 @@ const route = createBrowserRouter(createRoutesFromElements(
 ))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <AuthProvider>
     <RouterProvider router = {route} />
-  </React.StrictMode>
+  </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

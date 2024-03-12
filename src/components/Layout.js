@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
-import Footer from './Footer';
+import PreLoader from './PreLoader';
 
 function Layout() {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    const dataFetching = () => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+    };
+    dataFetching();
+  }, []);
+
   return (
     <>
-        <Header/>
-        <Outlet/>
-        <Footer/>
+      {isLoading ? <PreLoader /> : (
+        <>
+          <Header />
+          <Outlet />
+        </>
+      )}
     </>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

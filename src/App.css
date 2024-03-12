@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Monomaniac+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     padding: 0;
     margin: 0;
@@ -9,10 +10,52 @@
 body{
     
 }
+.loader{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(14, 16, 42, 0.7);
+    backdrop-filter: blur(10px);
+}
+.loader-pseudo{
+    display: none;
+}
+.load-spinner{
+    height: 50px;
+    width: 50px;
+    border-top: 1px solid rgb(255, 255, 255);
+    /* border-right: 1px solid white;
+    border-bottom: 1px solid black;
+    border-left: 1px solid white; */
+    border-radius: 50%;
+    animation: spin 1s infinite;
+    /* border-radius: 50%;
+    border: 2px solid white; */
+}
+@keyframes spin{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
 .flex{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#logout{
+    display: none;
+    color: white;
+    font-family: "Inter", sans-serif  !important;
+    border-radius: 2px;
+    font-family: "Inter", sans-serif;
 }
 .defaultfont{
     font-family: "Inter", sans-serif;
@@ -26,6 +69,7 @@ body{
     top: 0;
     display: flex;
     justify-content: space-between;
+    z-index: 10;
 }
 .logo{
     display: flex;
@@ -52,11 +96,23 @@ body{
 .list > li{
     align-self: center;
     color: white;
+    font-family: "Inter", sans-serif  !important;
+    border-radius: 2px;
     
 }
+
+
+.selectlog{
+    background-color: #161A42;
+    border: none;
+    color: white;
+}
+.selectlog:hover + .logspan{
+    display: block;
+}
 .logo-img{
-    height: 60px ;
-    width: 60px ;
+    height: 60px;
+    width: 60px;
 }
 
 .link{
@@ -67,16 +123,38 @@ body{
     border-radius: 2px;
     text-decoration: none;
 }
-
-.link:nth-child(4){
-    background-color: #CB9714;
-    border-radius: 3px;
+.prof{
+    height: 35px;
+    width: 35px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    outline: 1px solid white;
+    
 }
+.prof:focus + .drop{
+    opacity: 1;     
+}
+.drop{
+    position: absolute;
+    top: 100%;
+    right: 1%;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: .25rem;
+    box-shadow: 0.5px 1px 2px black;
+    opacity: 0;  
+    transition: opacity .4s ease;   
+}
+
+
 #user{
     font-size: 25px;
 }
 .active{
-    animation: border .2s ease-in;
+    border-bottom: 2px solid #CB9714;
+
 }
 
 /* footer */
@@ -156,10 +234,206 @@ body{
 }
 
 /* Login */
+.overlay{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(192, 192, 192, 0.6) ;
+    backdrop-filter: blur(7px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif !important;
+    
+}
+.overcard{
+    height: 300px;
+    width: 500px;
+    background-color: rgb(251, 245, 245);
+    border-radius: 5px;
+    padding: 20px;
+}
+.close{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    
+}
+.succesic{
+    display: flex;
+    justify-content: center;
+}
+.msg{
+    display: flex;
+    flex-direction: column ;
+    gap: 10px;
+}
+.msg > h6{
+    font-size: 2rem;
+    color: rgb(85, 85, 85);
+}
+#suc{
+    color: rgb(75, 253, 75);
+    font-size: 70px;
+}
+#closeic{
+    font-size: 25px;
+    cursor: pointer;
+}
 .login{
     height: 100vh;
     width: 100%;
+    display: grid;
+    place-items: center;
 }
+.logpad{
+    position: relative;
+    height: 90%;
+    width: 75%;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='13' ry='13' stroke='%23333' stroke-width='5' stroke-dasharray='8%2c 25' stroke-dashoffset='3' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 13px;
+    display: flex; 
+    overflow: hidden;
+}
+.logpad::before{
+    content:'';
+    position: absolute;
+    /* top: 0; */
+    height: 100%;
+    width: 100%;
+    transition: transform .6s ease-out;
+    transform: translateX(50%);
+    background-color: #CB9714;
+}
+.withbeforepseudoclass::before{
+    content:'';
+    position: absolute;
+    /* top: 0; */
+    height: 100%;
+    width: 100%;
+    background-color: #CB9714;
+    transform: translateX(-50%);
+}
+.swap{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+
+
+.signup{
+    height: 100%;
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.headup{
+    display: grid;
+    letter-spacing: 1px;
+    place-items: center;
+    padding: 10% 2% 2% 2%;
+    font-family: "Inter", sans-serif;
+}
+.pana{
+    height: 40px;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid rgb(179, 179, 179);
+    outline: none;
+}
+.pana:focus{
+    border: none;
+    outline: 2px solid rgb(209, 209, 255);
+}
+
+.updash{
+    display: flex;
+    justify-content: space-evenly;
+}
+.checkbox{
+    display: flex;
+    justify-content: space-between;
+}
+.checkbox > p{
+    transition: all .1s ease-out;
+}
+
+.checkbox > p:hover{
+    color: #CB9714;
+    text-decoration: underline;
+}
+.check{
+    height: 25px;
+    width: 25px;    
+}
+#pseudosi{
+    height: 1px;
+    width: 33%;
+    border: 1px solid rgb(203, 198, 198);
+    align-self: center;
+}
+.upauth{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.google{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 40px;
+    width: 300px;
+    background-color: rgb(208, 233, 255);
+    border-radius: 5px;
+    transition: all .1s ease-in;
+    cursor: pointer;
+}
+.google:hover{
+    color: white;
+    background-color: rgb(231, 241, 250);
+}
+.google > p{
+    font-weight: 500;
+    font-family: "Inter", sans-serif !important;
+    color: rgb(75, 75, 235);
+}
+.face{
+    height: 40px;
+    width: 50px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(207, 207, 226) ;
+}
+
+.authic{
+    font-size: 25px;
+    color: rgb(94, 94, 255);
+}
+
+
+.butt{
+    display: flex;
+    justify-content: center;
+}
+.signin{
+    height: 100%;
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+
+
 /* GetHired */
 .details{
     height: 100vh;
@@ -167,7 +441,7 @@ body{
     cursor: none;
 }
 .card{
-    height: 90%;
+    height: 740px;
     width: 75%;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='13' ry='13' stroke='%23333' stroke-width='5' stroke-dasharray='8%2c 25' stroke-dashoffset='3' stroke-linecap='square'/%3e%3c/svg%3e");
     border-radius: 13px;
@@ -331,6 +605,61 @@ body{
 .overflow::-webkit-scrollbar{
     display: none;
 }
+/* preloader */
+.pre-loader{
+    height: 100vh;
+    width: 100%;
+    background-color: #1a1e4a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    animation: back .3s linear;
+}
+.pre-loader > img{
+    height: 250px;
+    width: 250px;
+    animation: fader 1s linear;
+}
+.pre-loader > h1{
+    color: white;
+    letter-spacing: 1px;
+    font-family: "Josefin Sans", sans-serif !important;
+    animation: opac .7s linear;
+}
+@keyframes back{
+    from{
+        background-color: white;
+    }
+    to{
+        background-color: #1a1e4a;
+    }
+}
+@keyframes opac{
+    from{
+        opacity: 0;
+        font-size: 1000px;
+    }
+    to{
+        opacity: 1;
+        font-size: 25px;
+    }
+}
+@keyframes fader{
+    0%{
+        filter: brightness(30%);
+    }
+    50%{
+        filter: brightness(60%);
+    }
+    75%{
+        filter: brightness(80%);
+    }
+    100%{
+        filter: brightness(100%);
+    }
+}
 @media (max-width:640px){
     /* header */
     .header{
@@ -364,7 +693,7 @@ body{
     }
     .list{
         position: fixed;
-        background-color: rgb(66, 62, 62,0.8);
+        background-color: 	rgb(22, 26, 66,0.7);
         backdrop-filter: blur(20px);
         height: 100%;
         width: 100%;
@@ -405,6 +734,325 @@ body{
     }
     .active{
         animation: border .2s ease-in;
+    }
+    /* GetHired */
+.details{
+    height: 100vh;
+    width: 100%;
+    cursor: none;
+}
+.card{
+    height: 740px;
+    width: 75%;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='13' ry='13' stroke='%23333' stroke-width='5' stroke-dasharray='8%2c 25' stroke-dashoffset='3' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 13px;
+    display: flex;
+}
+.card1{
+    height: 100%;
+    width: 100%;
+}
+.card2{
+    display: none;
+    height: 100%;
+    width: 50%;
+    background-image: url('../src/assets/res.svg');
+    outline: 7px solid white;
+    background-size: cover;
+    border-top-right-radius: 26px;
+    border-bottom-right-radius: 26px;
+    flex-direction: column;
+    font-weight: 400;
+    
+}
+/* Login */
+.overlay{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(192, 192, 192, 0.6) ;
+    backdrop-filter: blur(7px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif !important;
+    
+}
+.overcard{
+    height: 300px;
+    width: 500px;
+    background-color: rgb(251, 245, 245);
+    border-radius: 5px;
+    padding: 20px;
+}
+.close{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    
+}
+.succesic{
+    display: flex;
+    justify-content: center;
+}
+.msg{
+    display: flex;
+    flex-direction: column ;
+    gap: 10px;
+}
+.msg > h6{
+    font-size: 2rem;
+    color: rgb(85, 85, 85);
+}
+#suc{
+    color: rgb(75, 253, 75);
+    font-size: 70px;
+}
+#closeic{
+    font-size: 25px;
+    cursor: pointer;
+}
+.login{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.logpad{
+    position: relative;
+    height: 700px;
+    max-width: 430px;
+    background-image: none;
+    border: 1px solid rgb(178, 175, 175);
+    border-radius: 13px;
+    display: flex; 
+    overflow: hidden;
+    transition: all 0.4s ease-in;
+}
+.logpad::before{
+    content:'';
+    position: absolute;
+    height: 0;
+    width: 0;
+    transform: translateX(50%);
+    background-color: #CB9714;
+}
+.withbeforepseudoclass::before{
+    content:'';
+    position: absolute;
+    height: 0;
+    width: 0;
+    background-color: #CB9714;
+    transform: translateX(-50%);
+}
+
+.swap{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.translate{
+    transform: translateX(-100%);
+}
+
+
+.headup{
+    display: grid;
+    letter-spacing: 1px;
+    place-items: center;
+    padding: 10% 2% 2% 2%;
+    font-family: "Inter", sans-serif;
+}
+.pana{
+    height: 40px;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid rgb(179, 179, 179);
+    outline: none;
+}
+.pana:focus{
+    border: none;
+    outline: 2px solid rgb(209, 209, 255);
+}
+
+.updash{
+    display: flex;
+    justify-content: space-evenly;
+}
+.checkbox{
+    display: flex;
+    justify-content: space-between;
+}
+.checkbox > p{
+    transition: all .1s ease-out;
+}
+
+.checkbox > p:hover{
+    color: #CB9714;
+    text-decoration: underline;
+}
+.check{
+    height: 25px;
+    width: 25px;    
+}
+#pseudosi{
+    height: 1px;
+    width: 33%;
+    border: 1px solid rgb(203, 198, 198);
+    align-self: center;
+}
+.upauth{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.google{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 40px;
+    width: 300px;
+    background-color: rgb(208, 233, 255);
+    border-radius: 5px;
+    transition: all .1s ease-in;
+    cursor: pointer;
+}
+.google:hover{
+    color: white;
+    background-color: rgb(231, 241, 250);
+}
+.google > p{
+    font-weight: 500;
+    font-family: "Inter", sans-serif !important;
+    color: rgb(75, 75, 235);
+}
+.face{
+    height: 40px;
+    width: 50px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(207, 207, 226) ;
+}
+
+.authic{
+    font-size: 25px;
+    color: rgb(94, 94, 255);
+}
+
+
+.butt{
+    display: flex;
+    justify-content: center;
+}
+.signup{
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.2s ease-out;
+}
+.signin{
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: transform 0.2s ease-out;
+}
+
+
+}
+@media (min-width:642px) and (max-width:1000px){
+    /* headre */
+    .header{
+        height: 70px;
+        width: 100%;
+        background-color: #161A42;
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .logo{
+        display: flex;
+        gap: 10px;
+        margin-left: 3%;
+    }
+    .ham{
+        display: block;
+        font-size: 25px;
+        color: #fafafa;
+        align-self: center;
+        margin-right: 5%;
+        z-index: 2;
+        cursor: pointer;
+    }
+    .logo > h2{
+        font-family: "Monomaniac One", sans-serif;
+        color: white;
+        font-weight: 200;
+        align-self: center;
+    }
+    .list{
+        position: fixed;
+        background-color: 	rgb(22, 26, 66,0.7);
+        backdrop-filter: blur(20px);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        clip-path: circle(100px at 90% -10%);
+        flex-direction: column-reverse;
+        transition: all 1s ease-out;
+        padding-bottom: 50px;
+    }
+    .list.open{
+        clip-path: circle(1000px);
+    }
+    .list > li{
+        align-self: center;
+        color: white;
+        
+    }
+    .logo-img{
+        height: 60px ;
+        width: 60px ;
+    }
+    
+    .link{
+        align-self: center;
+        color: white;
+        font-family: "Inter", sans-serif;
+        padding: 8px 15px;
+        border-radius: 2px;
+        text-decoration: none;
+    }
+    
+    .link:nth-child(4){
+        background-color: #CB9714;
+        border-radius: 3px;
+    }
+    #user{
+        font-size: 25px;
+    }
+    .active{
+        animation: border .2s ease-in;
+    }
+    .logpad{
+        height: 700px;
+        width: 95%;
+    }
+    .pana{
+        border-radius: 6px;
+    }
+    .updash > p{
+        
+        font-size: 15px;
     }
 }
 
