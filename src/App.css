@@ -661,8 +661,148 @@ body{
     }
 }
 @media (max-width:640px){
-    /* gethired */
+   .butpad{
+    display: flex;
+    justify-content: space-evenly;
+   }
+/* FillDEtails */
+
+.filldetails{
+    display: flex;
+    flex-direction: column;
+}
+#pseudo{
+    height: 1px ;
+    width: 100%;
+    border:.5px solid #636161;
+    margin: 5% 0 5% 0;
+}
+.cancel{
+    display: flex;
+    justify-content: space-between;
+}
+.filldetails > input{
+    height: 40px;
+    font-size: .9rem;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    outline: 1px solid rgb(126, 121, 121);
+    transition: all .2s ease-in;
+}
+.filldetails > input:focus{
+    border: none;
+    outline: 1px solid #CB9714;
+    box-shadow: none;
+}
+.filldetails >h1{
+    font-size: 1.6rem;
+
+    padding: 10% 2% 2% 2%;
+}
+.filldetails > p{
+    font-size: 1rem;
+    color: #CB9714;
+    padding: 2% 2% 2% 2%;
+}
+.filldetails > label{
+    padding: 2% 0 2% 0;
+    font-family: "Inter", sans-serif;
+}
+.cancel > p{
+    align-self: center;
+   
+}
+.cancel > p:hover{
+    color: #CB9714;
+}
+.cancel > button{
+    letter-spacing: 1px;
+}
+.pointer{
+    display: none;
+    height: 20px;
+    width: 20px;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 10px 10px 30px rgba(255, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+/* UploadResume */
+.upload{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Inter", sans-serif;
+}
+.upload > h1{
+    font-size: 1.8rem;
+    padding: 10% 2% 2% 2%;
+}
+.upload > p{
+    font-size: .8rem;
+    color: #CB9714;
+    padding: 2% 2% 2% 2%;
+}
+.upload >h3{
+    font-size: 1.4rem;
+    font-family: "Josefin Sans", sans-serif !important;
+    padding: 7% 2% 2% 2%;
+}
+.uploadfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed rgb(169, 163, 163);
+    color: rgb(172, 164, 164);
+    border-bottom: none;
+    height: 150px;
     
+}
+.uploadfile > h3{
+    font-size: .8rem;
+}
+.uploadsystem{
+    display: flex;
+    border: 1px solid black;
+    gap: 20px;
+    align-items: center;
+}
+.uploadsystem > h3{
+    font-weight: 400;
+}
+
+#fileup{
+    font-size: 40px;
+    color:#CB9714;
+}
+#filesystem{
+    font-size: 40px;
+    color:#CB9714;
+}
+.customUpload{
+    font-family: "Josefin Sans", sans-serif !important;
+    background-color: #dfcc9d;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    padding:8px 10px 8px 10px;
+}
+.overflow{
+    width: 60%;
+    overflow: scroll;
+
+}
+.overflow::-webkit-scrollbar{
+    display: none;
+}
     /* index */
     .index{
         height: 100vh;
@@ -672,7 +812,7 @@ body{
         height: 80%;
         width: 90%;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 20px;
     }
     .col1{
@@ -682,7 +822,7 @@ body{
         gap: 20px;
     }
     .col1 > h1{
-        font-size: 40px;
+        font-size: 30px;
         letter-spacing: 1px;
     }
     .col1 > h1 >span{
@@ -690,7 +830,7 @@ body{
     }
     .col1 > p{
         padding: 0;
-        font-size: 20px;
+        font-size: 1rem;
         letter-spacing: 1px;
     }
     .col2{
@@ -699,26 +839,28 @@ body{
         border: 1px solid rgb(229, 213, 213);
     }
     .col3{
-        height: 100%;
-        width: 30%;
+        width: 100%;
     }
     .col3 > p{
         font-family: "Josefin Sans", sans-serif;
         font-weight: 400;
+        margin: 0;
         justify-self: center;
-        margin-left: 30%;
+        padding: 10px 0 10px 0;
         
     }
     .indeximg{
-        width: 405px;
+        justify-self: center;
+        width: 305px;
         height: 447px;
         padding: 20px 10px 10px 20px;
     }
     .indexbut{
         display: flex;
         gap: 20px;
-        padding: 20px ;
-        margin-left: 10%;
+        margin: 0;
+        padding: 0;
+        
        
     }
     .hirebut{
@@ -813,12 +955,13 @@ body{
 .details{
     height: 100vh;
     width: 100%;
-    cursor: none;
+    cursor: pointer;
 }
 .card{
-    height: 740px;
-    width: 75%;
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='13' ry='13' stroke='%23333' stroke-width='5' stroke-dasharray='8%2c 25' stroke-dashoffset='3' stroke-linecap='square'/%3e%3c/svg%3e");
+    height: 650px;
+    width: 90%;
+    border: 1px solid rgb(198, 191, 191);
+    background-image: none;
     border-radius: 13px;
     display: flex;
 }
@@ -838,6 +981,9 @@ body{
     flex-direction: column;
     font-weight: 400;
     
+}
+.cardbut{
+    padding: 20px 10px 15px 10px;
 }
 /* Login */
 .overlay{
