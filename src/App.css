@@ -661,6 +661,80 @@ body{
     }
 }
 @media (max-width:640px){
+    /* gethired */
+    
+    /* index */
+    .index{
+        height: 100vh;
+        width: 100%;
+    }
+    .indexpad{
+        height: 80%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .col1{
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .col1 > h1{
+        font-size: 40px;
+        letter-spacing: 1px;
+    }
+    .col1 > h1 >span{
+        color: #CB9714;
+    }
+    .col1 > p{
+        padding: 0;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    .col2{
+        height: 1px;
+        width: 90%;
+        border: 1px solid rgb(229, 213, 213);
+    }
+    .col3{
+        height: 100%;
+        width: 30%;
+    }
+    .col3 > p{
+        font-family: "Josefin Sans", sans-serif;
+        font-weight: 400;
+        justify-self: center;
+        margin-left: 30%;
+        
+    }
+    .indeximg{
+        width: 405px;
+        height: 447px;
+        padding: 20px 10px 10px 20px;
+    }
+    .indexbut{
+        display: flex;
+        gap: 20px;
+        padding: 20px ;
+        margin-left: 10%;
+       
+    }
+    .hirebut{
+        color: white;
+        width: 150px;
+        height: 40px;
+        background-color: #161A42;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all .3s ease-in;
+    }
+    .hirebut:focus{
+        border: 2px solid white;
+        outline: 2px solid rgb(81, 78, 78);
+    }
+    
     /* header */
     .header{
         height: 70px;
@@ -820,11 +894,12 @@ body{
 }
 .logpad{
     position: relative;
-    height: 700px;
+    height: 600px;
     max-width: 430px;
     background-image: none;
     border: 1px solid rgb(178, 175, 175);
     border-radius: 13px;
+    
     display: flex; 
     overflow: hidden;
     transition: all 0.4s ease-in;
@@ -877,7 +952,7 @@ body{
 
 .updash{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 .checkbox{
     display: flex;
@@ -897,20 +972,20 @@ body{
 }
 #pseudosi{
     height: 1px;
-    width: 33%;
-    border: 1px solid rgb(203, 198, 198);
+    width: auto;
+    border: 1px solid rgb(255, 255, 255);
     align-self: center;
 }
 .upauth{
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 .google{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
     height: 40px;
     width: 300px;
     background-color: rgb(208, 233, 255);
@@ -923,7 +998,8 @@ body{
     background-color: rgb(231, 241, 250);
 }
 .google > p{
-    font-weight: 500;
+    font-weight: 300;
+    font-size: .8rem;
     font-family: "Inter", sans-serif !important;
     color: rgb(75, 75, 235);
 }
@@ -938,7 +1014,7 @@ body{
 }
 
 .authic{
-    font-size: 25px;
+    font-size: 17px;
     color: rgb(94, 94, 255);
 }
 
@@ -950,7 +1026,7 @@ body{
 .signup{
     height: 100%;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -959,7 +1035,7 @@ body{
 .signin{
     height: 100%;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 30px;

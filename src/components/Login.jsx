@@ -59,7 +59,7 @@ function Login() {
   }
   function Swapper(e){
     e.preventDefault();
-    if(window.innerWidth > 600){
+    if(window.innerWidth > 640){
       setisActive(!isActive)
     }
     else{
