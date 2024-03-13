@@ -925,7 +925,7 @@ body{
         clip-path: circle(100px at 90% -10%);
         flex-direction: column-reverse;
         transition: all 1s ease-out;
-        padding-bottom: 50px;
+        padding-bottom: 10px;
     }
     .list.open{
         clip-path: circle(1000px);
