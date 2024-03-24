@@ -19,7 +19,7 @@ function App() {
               <p>Tell us about yourself !!?</p>
               <div className="indexbut">
                 <Link><button className='hirebut' >TO HIRE</button></Link>
-                <Link to='getDetails'><button className='hirebut'>GET HIRED</button></Link>
+                <Link to='getDetails/fill'><button className='hirebut'>GET HIRED</button></Link>
               </div>
           </div>
       </div>

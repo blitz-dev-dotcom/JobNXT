@@ -21,7 +21,7 @@ const route = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<App />} />
     <Route path='login' element={<Login/>} />
     <Route path='getDetails' element={<GetHired/>}>
-      <Route path='fill' element={<FillDetails/>} />
+      <Route index path='fill'  element={<FillDetails/>} />
       <Route path='upload' element={<UploadResume/>} />
       <Route path='saved' element={<SavedResume/>} />
     </Route>
