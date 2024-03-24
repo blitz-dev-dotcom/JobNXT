@@ -1,23 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter , RouterProvider ,createRoutesFromElements, Route } from 'react-router-dom';
-import Header from './components/Header';
 import ErrorPage from './MisRoute/MisRoute';
 import Login from './components/Login';
 import Layout from './components/Layout';
-import Index from './components/Index';
 import GetHired from './components/GetHired';
 import { AuthProvider } from './context.js/AuthContext';
+import ProtectedRoute from './ProtectedRoute';
+import App from './App';
 
 
 
 const route = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout/>} errorElement={<ErrorPage />}>
-    <Route path='/' element={<Index />} />
-    <Route path='login' element={<Login/>}/>
+    <Route path='/' element={<App />} />
+    <Route path='login' element={<Login/>} />
     <Route path='getDetails' element={<GetHired/>}/>
   </Route>
 ))

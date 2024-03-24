@@ -1,20 +1,28 @@
 .err{
     display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100%;
     
 }
 .err > img{
-    height: 100%;
-    width: 50%;
+    display: block;
     background-size: cover;
 }
 .hoem{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 200; 
+    color: rgb(91, 88, 88);
+}
+.err > p{
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 200; 
+    color: rgb(91, 88, 88);
 }
 .errlink{
     text-decoration: none;

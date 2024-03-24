@@ -20,7 +20,7 @@ export default function useAuth(){
 }
 
 export function AuthProvider ({children}){
-    const [CurrentUser,setCurrentUser] = useState();
+    const [CurrentUser,setCurrentUser] = useState(null);
     const [Profile,setProfile] = useState();
     const [Reg , setReg] = useState(false);
     const [loading , setloading] = useState(false);
@@ -83,6 +83,7 @@ export function AuthProvider ({children}){
             .then(success=>{
                 setReg(false);
                 setloading(false);
+                setCurrentUser(null);
 
             })
             .catch(err=>{

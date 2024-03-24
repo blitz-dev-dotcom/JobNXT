@@ -20,6 +20,16 @@ function Login() {
   const {AuthPopup,CreateUser , SignIn , loading ,valid , setvalid } = useAuth();
   var navigate = useNavigate();
   
+  // database query
+  // const userRef  = db.collection('user').doc('aLErRK3EyNUbLFglZa65alprkBo2');
+  // const dag = userRef.get();
+  // if(!dag.exists){
+  //   console.log('not such document')
+  // }
+  // else{
+  //   console.log(dag.data())
+  // }
+  
   // re-direction to home page after login using google is successfull
   useEffect(()=>{
     if(loading){navigate('/')}
