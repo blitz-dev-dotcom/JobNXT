@@ -10,6 +10,9 @@ import GetHired from './components/GetHired';
 import { AuthProvider } from './context.js/AuthContext';
 import ProtectedRoute from './ProtectedRoute';
 import App from './App';
+import FillDetails from './components/FillDetails';
+import UploadResume from './components/UploadResume';
+import SavedResume from './components/SavedResume';
 
 
 
@@ -17,7 +20,11 @@ const route = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout/>} errorElement={<ErrorPage />}>
     <Route path='/' element={<App />} />
     <Route path='login' element={<Login/>} />
-    <Route path='getDetails' element={<GetHired/>}/>
+    <Route path='getDetails' element={<GetHired/>}>
+      <Route path='fill' element={<FillDetails/>} />
+      <Route path='upload' element={<UploadResume/>} />
+      <Route path='saved' element={<SavedResume/>} />
+    </Route>
   </Route>
 ))
 const root = ReactDOM.createRoot(document.getElementById('root'));

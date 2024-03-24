@@ -17,7 +17,7 @@ function FillDetails(props) {
     // function handler
     function nextHandler(){
         if(TitleRef.current.value!==''&&RoleRef.current.value !== ''&&ExpRef.current.value !==''){
-            CtoP(1);
+            //function to be executed
         }
         else{
             alert('fill all details')
@@ -58,7 +58,7 @@ function FillDetails(props) {
         <div id='pseudo'></div>
         <div className="cancel">
             <p onClick={()=>{cancel()}}>Cancel</p>
-            <button className='hirebut' disabled={false} onClick={()=>nextHandler()} >Save & Continue</button>
+            <button className='hirebut' disabled={false} >Save & Continue</button>
         </div>
         
     </div>
