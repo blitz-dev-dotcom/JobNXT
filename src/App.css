@@ -657,6 +657,124 @@ body{
         filter: brightness(100%);
     }
 }
+/* Analyse */
+.analyse{
+    height: 100vh;
+    width: 100%;
+    background: url(../src/assets/analyseback.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif ;
+}
+.analysepad{
+    height: 80%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+.analysepad > h1{
+    font-size: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.analysepad > form{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255,0.7);
+    backdrop-filter: blur(10px);
+    border: 2px solid white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+}
+#title{
+    height: 50px;
+    width: 250px;
+    padding: 20px;
+    font-size: 1rem;
+    font-family: "Inter", sans-serif ;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 5px;
+}
+#exp{
+    height: 50px;
+    width: 250px;
+    padding: 20px;
+    font-size: 1rem;
+    font-family: "Inter", sans-serif ;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 5px;
+}
+#deg{
+    height: 50px;
+    width: 250px;
+    padding: 20px;
+    font-size: 1rem;
+    font-family: "Inter", sans-serif ;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 5px;
+}
+#skill{
+    height: auto;
+    width: 350px;
+    padding: 20px;
+    font-size: 1rem;
+    background-color: white;
+    font-family: "Inter", sans-serif ;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 5px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+#skill > input{
+    
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+#skill > li{
+    list-style: none;
+    background-color: #CB9714;
+    padding: 10px;
+    border-radius: 4px ;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.uploadfold{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.uploadfold > button{
+    padding: 20px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    background-color: #ca9715;
+    opacity: 1;
+    border-radius:10px ;
+    cursor: pointer;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 @media (max-width:640px){
    .butpad{
     display: flex;

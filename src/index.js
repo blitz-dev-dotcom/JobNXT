@@ -13,10 +13,12 @@ import App from './App';
 import FillDetails from './components/FillDetails';
 import UploadResume from './components/UploadResume';
 import SavedResume from './components/SavedResume';
+import Analyser from './ResumeAnalyser/Analyser';
 
 
 
 const route = createBrowserRouter(createRoutesFromElements(
+  <>
   <Route path='/' element={<Layout/>} errorElement={<ErrorPage />}>
     <Route path='/' element={<App />} />
     <Route path='login' element={<Login/>} />
@@ -26,6 +28,11 @@ const route = createBrowserRouter(createRoutesFromElements(
       <Route path='saved' element={<SavedResume/>} />
     </Route>
   </Route>
+  <Route path='/recruit' element={<Analyser/>}>
+
+  </Route>
+  </>
+  
 ))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -31,7 +31,7 @@ function UploadResume() {
     e.preventDefault();
     const dt = e.dataTransfer;
     const files = dt.files;
-    const documents=[...files]
+    const documents=[...files];
     console.log(files);
     console.log(documents);
   }
