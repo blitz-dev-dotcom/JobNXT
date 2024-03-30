@@ -31,11 +31,12 @@ function Analyser() {
         
     }
     function HandleChange(e){
+        console.log(e)
         const selectedFiles = e.target.files;
         // If you want to store the selected file names in the state
         const fileNames = Array.from(selectedFiles);
         setFolder(fileNames);
-        setOpac(true)
+        setOpac(true);
     }
     function HandleFire(e){
         e.preventDefault();
@@ -132,9 +133,12 @@ function Analyser() {
                 />
                 
             </div>
-        <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button id='cancel' onClick={()=>{setFolder(null)}}>Cancel</button><button id='analyse' onClick={HandleFire}>Analyse</button></div>
+        <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button id='cancel' onClick={()=>{setFolder(null);
+            fileRef.current.value='';
+        }}>Cancel</button>{Folder?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}</div>
         <div className="uploadfold"></div>
-        <div className={Opac?'folderupopac':'folderup'}>
+        <div className="translater">
+            <div className={Opac?'folderupopac':'folderup'}>
                     {Folder?(Folder.map((item,index)=>{
                         return(
                             <div className="contpdf" key={index}>
@@ -144,6 +148,7 @@ function Analyser() {
                         )
                     })):<div className='nothing'><p>Nothing To Show Here Upload to Analyse!</p></div>}
                     <div className="close"><button id='cancel' onClick={()=>{setOpac(false)}}>Close</button></div>
+            </div>
         </div>
     </div>
   )
