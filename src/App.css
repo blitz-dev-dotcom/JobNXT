@@ -656,30 +656,27 @@
 }
 /* Analyse */
 .analyse{
-    height: auto ;
+    height: 100vh ;
     width: 100%;
-    background: url(../src/assets/analyseback.gif);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: rgb(174, 174, 174);
     display: flex;
     flex-direction: column;
     gap: 30px;
     justify-content: center;
     align-items: center;
     font-family: "Inter", sans-serif ;
+    overflow: hidden;
 }
 .analysepad{
     height: 700px;
     width: 70%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    overflow: hidden;
     
 }
-.analysepad > h1{
-    font-size: 1.5rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+
 .analysepad > form{
     height: 100%;
     width: 100%;
@@ -691,6 +688,9 @@
     flex-direction: column;
     gap: 10px;
     border-radius: 10px;
+}
+.analyseload{
+    display: none;
 }
 #title{
     height: 50px;
@@ -753,7 +753,7 @@
     align-items: center;
 }
 .uploadfold{
-    height: 60px;
+    height: 50px;
     width: 100%;
     display: flex;
     gap: 20px;
@@ -761,21 +761,22 @@
     align-items: center;
 }
 .uploadfold > button{
-    height: 40px;
+    height: 50px;
     width: 150px;
     font-size: 15px;
     border: none;
     outline: none;
-    background-color: #ca9715;
+    background-color: white;
     opacity: 1;
     border-radius:6px ;
     cursor: pointer;
-    color: white;
+    color: black;
+    font-weight: 600;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #analyse{
-    height: 30px;
-    width: 100px;
+    height: 50px;
+    width: 150px;
     font-size: 15px;
     display: flex;
     justify-content: center;
@@ -790,8 +791,8 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #cancel{
-    height: 30px;
-    width: 100px;
+    height: 50px;
+    width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -808,6 +809,117 @@
 #foolist{
     list-style: none;
     color: #0b57d0;
+}
+.headeran{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ca9715;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.headeran > h1{
+    padding: 20px;
+
+
+
+}
+.folderup{
+    display: none;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    width: 500px;
+    height: 79vh;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 25px;
+    opacity: 0;
+    transform: translateY(100%);
+    
+}
+.folderupopac{
+    display: block;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    width: 500px;
+    height: 79vh;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 25px;
+    overflow-y: scroll;
+
+}
+.folderupopac::-webkit-scrollbar{
+    display: none;
+    
+}
+.folderupopac::-webkit-scrollbar-thumb{
+    display: none;
+}
+.folderupopac::-webkit-scrollbar-track{
+    display: none;
+        
+}
+/* 
+::-webkit-scrollbar{
+  width: 4px;
+  height: 1px;
+  
+}
+::-webkit-scrollbar-thumb{
+background-color: #7D7C7C;
+height: 4px;
+}
+::-webkit-scrollbar-track{
+  background-color: black;
+  
+}
+*/
+.contpdf{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+.icon{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#pdfic{
+    color: red;
+    font-size: 25px;
+}
+.name{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+.name > h3{
+    font: 300;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nothing{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nothing > p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 @media (max-width:640px){

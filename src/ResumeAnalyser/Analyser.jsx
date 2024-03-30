@@ -2,8 +2,11 @@ import React,{useRef,useState,useEffect} from 'react';
 import { IoMdClose } from "react-icons/io";
 import {storage} from '../firebaseConfig';
 import {ref , uploadBytes} from 'firebase/storage';
+import {v4} from 'uuid';
+import { FaFilePdf } from "react-icons/fa";
 function Analyser() {
     const [TagValue,setTagValue] = useState('');
+    const [Opac,setOpac] = useState(false)
     const [TagArr,setTagArr] = useState([]);
     const [Folder,setFolder] = useState(null);
     const TitleRef = useRef();
@@ -32,6 +35,7 @@ function Analyser() {
         // If you want to store the selected file names in the state
         const fileNames = Array.from(selectedFiles);
         setFolder(fileNames);
+        setOpac(true)
     }
     function HandleFire(e){
         e.preventDefault();
@@ -47,7 +51,7 @@ function Analyser() {
             const fileData = event.target.result;
             const FileBlob = new Blob([fileData], { type: file.type });
 
-            const storageRef = ref(storage, '/Folder/' + file.name);
+            const storageRef = ref(storage, '/Folder/' + file.name + v4());
             uploadBytes(storageRef, FileBlob)
                 .then(() => {
                     console.log('success');
@@ -74,7 +78,9 @@ function Analyser() {
   return (
     <div className='analyse'>
         <div className="analysepad">
-            <h1>Job Description</h1>
+            <div className="headeran"><h1>Job Description</h1>
+
+            </div>
             <form>
                 <label htmlFor='title'>Job Title</label>
                 <input 
@@ -126,8 +132,19 @@ function Analyser() {
                 />
                 
             </div>
-        <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button></div>
-        <div className="uploadfold"><button id='cancel' onClick={()=>{setFolder(null)}}>Cancel</button><button id='analyse' onClick={HandleFire}>Analyse</button></div>
+        <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button id='cancel' onClick={()=>{setFolder(null)}}>Cancel</button><button id='analyse' onClick={HandleFire}>Analyse</button></div>
+        <div className="uploadfold"></div>
+        <div className={Opac?'folderupopac':'folderup'}>
+                    {Folder?(Folder.map((item,index)=>{
+                        return(
+                            <div className="contpdf" key={index}>
+                            <div className="icon"><FaFilePdf id='pdfic'/></div> 
+                            <div className="name"><h3>{item.name}</h3></div>
+                        </div>
+                        )
+                    })):<div className='nothing'><p>Nothing To Show Here Upload to Analyse!</p></div>}
+                    <div className="close"><button id='cancel' onClick={()=>{setOpac(false)}}>Close</button></div>
+        </div>
     </div>
   )
 }
