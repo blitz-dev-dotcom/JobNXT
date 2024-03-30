@@ -4,15 +4,24 @@ import {storage} from '../firebaseConfig';
 import {ref , uploadBytes} from 'firebase/storage';
 import {v4} from 'uuid';
 import { FaFilePdf } from "react-icons/fa";
+import { SiWelcometothejungle } from "react-icons/si";
+import { IoCloseSharp } from "react-icons/io5";
 function Analyser() {
+
     const [TagValue,setTagValue] = useState('');
     const [Opac,setOpac] = useState(false)
     const [TagArr,setTagArr] = useState([]);
     const [Folder,setFolder] = useState(null);
+    const [Anal,setAnal] = useState(false);
     const TitleRef = useRef();
     const fileRef = useRef();
     const expRef = useRef();
     const degRef = useRef();
+    window.addEventListener('load',()=>{
+        setTimeout(()=>{
+            setAnal(true)
+        },1500)
+    })
     useEffect(()=>{
         console.log(Folder)
     },[Folder])
@@ -79,8 +88,8 @@ function Analyser() {
   return (
     <div className='analyse'>
         <div className="analysepad">
-            <div className="headeran"><h1>Job Description</h1>
-
+            <div className="headeran">
+                <h1>Job Description</h1>
             </div>
             <form>
                 <label htmlFor='title'>Job Title</label>
@@ -150,6 +159,16 @@ function Analyser() {
                     <div className="close"><button id='cancel' onClick={()=>{setOpac(false)}}>Close</button></div>
             </div>
         </div>
+        {Anal?
+            <div className="welcome">
+            <div className="welcomepad">
+                    <SiWelcometothejungle id='welic'/>
+                    <div className="type"><div className="welhead"><h1>Use Our Resume Analyser To Rank Your Collection of Resumes!!</h1></div></div>
+                    <div className="abort"><button id='analyse' onClick={()=>{setAnal(false)}}>Continue</button></div>
+            </div>
+        </div>:
+            ""
+        }
     </div>
   )
 }
