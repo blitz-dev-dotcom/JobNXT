@@ -1,4 +1,4 @@
-import React,{useRef,useState} from 'react';
+import React,{useRef,useState,useEffect} from 'react';
 import { IoMdClose } from "react-icons/io";
 import {storage} from '../firebaseConfig';
 import {ref , uploadBytes} from 'firebase/storage';
@@ -10,7 +10,9 @@ function Analyser() {
     const fileRef = useRef();
     const expRef = useRef();
     const degRef = useRef();
-    
+    useEffect(()=>{
+        console.log(Folder)
+    },[Folder])
     function KeyDown(e){
         if(e.keyCode===13){
             setTagArr([...TagArr,TagValue])
@@ -22,34 +24,50 @@ function Analyser() {
         setTagArr(deletedtag);
     }
     function HandleUpload(e){
-        
         fileRef.current.click();
         
     }
     function HandleChange(e){
-            setFolder(Array.from(e.target.files))
-            
-                
-        //         reader.onload = function(e) {
-        //             console.log(`Contents of ${files.name}:`);
-        //             console.log(e.target.result); // This will log the contents of the file
-                
-                
-        //         reader.readAsText(files); // Read the file as text. You can use other methods like readAsDataURL for images.
-            
-        // }
-        
-        // 
-        // setFolder(db)
-        // console.log(Folder)
+        const selectedFiles = e.target.files;
+        // If you want to store the selected file names in the state
+        const fileNames = Array.from(selectedFiles);
+        setFolder(fileNames);
     }
     function HandleFire(e){
         e.preventDefault();
-        if(Folder) {alert('em')};
-        const images = ref(storage,`/images/${Folder[0].name
-        }`)
-        uploadBytes(images).then(()=>{alert('file uplad successfull')})
-        .catch(()=>{alert('error')})
+        if (!Folder || !Folder[0]) {
+            alert('Please select a file');
+            return;
+        }
+        for(let i=0 ;i<Folder.length;i++){
+            const file = Folder[i];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const fileData = event.target.result;
+            const FileBlob = new Blob([fileData], { type: file.type });
+
+            const storageRef = ref(storage, '/Folder/' + file.name);
+            uploadBytes(storageRef, FileBlob)
+                .then(() => {
+                    return;
+                })
+                .catch((error) => {
+                    alert('Error uploading file: ' + error.message);
+                });
+        };
+
+    reader.readAsArrayBuffer(file);
+        }
+        
+        // let FileBlob = new Blob([Folder[0]],{type:'application/pdf'});
+        // let url = URL.createObjectURL(FileBlob);
+        // console.log(FileBlob)
+        // console.log(url)
+        // if(Folder) {alert('em')};
+        // const images = ref(storage,`/images/${FileBlob}`)
+        // uploadBytes(images).then(()=>{alert('file uplad successfull')})
+        // .catch(()=>{alert('error')})
     }
     
     
@@ -108,7 +126,8 @@ function Analyser() {
                 />
                 
             </div>
-        <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button onClick={HandleFire}>upload</button></div>
+        <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button></div>
+        <div className="uploadfold"><button id='cancel' onClick={()=>{setFolder(null)}}>Cancel</button><button id='analyse' onClick={HandleFire}>Analyse</button></div>
     </div>
   )
 }
