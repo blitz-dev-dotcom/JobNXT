@@ -50,7 +50,7 @@ function Analyser() {
             const storageRef = ref(storage, '/Folder/' + file.name);
             uploadBytes(storageRef, FileBlob)
                 .then(() => {
-                    return;
+                    console.log('success');
                 })
                 .catch((error) => {
                     alert('Error uploading file: ' + error.message);
