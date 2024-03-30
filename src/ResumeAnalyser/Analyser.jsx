@@ -5,7 +5,7 @@ import {ref , uploadBytes} from 'firebase/storage';
 import {v4} from 'uuid';
 import { FaFilePdf } from "react-icons/fa";
 import { SiWelcometothejungle } from "react-icons/si";
-import { IoCloseSharp } from "react-icons/io5";
+import { IoIosAddCircleOutline } from "react-icons/io";
 function Analyser() {
 
     const [TagValue,setTagValue] = useState('');
@@ -27,8 +27,10 @@ function Analyser() {
     },[Folder])
     function KeyDown(e){
         if(e.keyCode===13){
-            setTagArr([...TagArr,TagValue])
-            setTagValue('')
+            if(TagValue!==''){
+                setTagArr([...TagArr,TagValue])
+                setTagValue('')
+            }
         }
     }
     function DeleteTag(val) {
@@ -46,6 +48,12 @@ function Analyser() {
         const fileNames = Array.from(selectedFiles);
         setFolder(fileNames);
         setOpac(true);
+    }
+    function RespEnter(){
+        if(TagValue!==''){
+            setTagArr([...TagArr,TagValue])
+            setTagValue('')
+        }
     }
     function HandleFire(e){
         e.preventDefault();
@@ -85,6 +93,7 @@ function Analyser() {
     }
     
     
+    
   return (
     <div className='analyse'>
         <div className="analysepad">
@@ -113,6 +122,7 @@ function Analyser() {
                         placeholder='Type Skills here'
                     
                     />
+                    <IoIosAddCircleOutline id='add' onClick={RespEnter}/>
                 </div>
                 <label htmlFor="deg">Degree</label>
                 <input 
@@ -145,7 +155,7 @@ function Analyser() {
         <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button id='cancel' onClick={()=>{setFolder(null);
             fileRef.current.value='';
         }}>Cancel</button>{Folder?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}</div>
-        <div className="uploadfold"></div>
+        
         <div className="translater">
             <div className={Opac?'folderupopac':'folderup'}>
                     {Folder?(Folder.map((item,index)=>{

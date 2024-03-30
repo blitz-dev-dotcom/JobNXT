@@ -853,6 +853,7 @@
     right: 3%;
     background-color: transparent;
     overflow: hidden;
+    pointer-events: none;
 }
 .folderup{
     position: relative;
@@ -1008,10 +1009,54 @@ height: 4px;
     width: 100%;
     display: flex;
     justify-content: center;
-    
 }
-
+#add{
+    display: none;
+}
 @media (max-width:640px){
+    /* analyser */
+    .analysepad{
+        width: 90%;
+    }
+    .analysepad > form{
+        padding: 20px 0px 20px 15px;
+    }
+    #add{
+        display: block;
+        font-size: 20px;
+        color: #ca9715;
+    }
+    #skill{
+        width: 90%;
+    }
+    #title{
+        width: 90%;
+    }
+    #deg{
+        width: 90%;
+    }
+    #exp{
+        width: 90%;
+    }
+    .translater{
+        width: 95%;
+    }
+    .folderup{
+        height: 90%;
+    }
+    .folderupopac{
+        height: 90%;
+    }
+    .close{
+        display: flex;
+        justify-content: center;
+    }
+    .uploadfold{
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
    .butpad{
     display: flex;
     justify-content: space-evenly;
