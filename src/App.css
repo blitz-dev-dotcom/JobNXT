@@ -692,6 +692,10 @@
 .analyseload{
     display: none;
 }
+.analysepad > form > input:focus{
+    border: none;
+    outline: 3px solid rgb(208, 208, 255);
+}
 #title{
     height: 50px;
     width: 250px;
@@ -699,8 +703,12 @@
     font-size: 1rem;
     font-family: "Inter", sans-serif ;
     border: 2px solid white;
-    outline: none;
+    outline: transparent;
     border-radius: 5px;
+}
+#title:focus{
+    border: none;
+    outline: 3px solid rgb(208, 208, 255);
 }
 #exp{
     height: 50px;
@@ -709,7 +717,7 @@
     font-size: 1rem;
     font-family: "Inter", sans-serif ;
     border: 2px solid white;
-    outline: none;
+   
     border-radius: 5px;
 }
 #deg{
@@ -719,7 +727,7 @@
     font-size: 1rem;
     font-family: "Inter", sans-serif ;
     border: 2px solid white;
-    outline: none;
+    
     border-radius: 5px;
 }
 #skill{
