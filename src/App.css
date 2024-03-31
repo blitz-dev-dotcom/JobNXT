@@ -876,6 +876,7 @@
     transition: transform 0.5s ease-in-out;
     transform: translateY(0%);
     overflow-y: scroll;
+    pointer-events: all;
 
 }
 .folderupopac::-webkit-scrollbar{
