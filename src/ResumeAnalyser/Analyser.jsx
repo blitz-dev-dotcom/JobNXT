@@ -8,6 +8,7 @@ import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
 function Analyser() {
    var FileBlobData = [];
+//    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
     const [Opac,setOpac] = useState(false)
     const [TagArr,setTagArr] = useState([]);
@@ -68,9 +69,10 @@ function Analyser() {
 
         reader.onload = function(event) {
             const fileData = event.target.result;
-            console.log(fileData);
+            // const Buf = Buffer.from(fileData)
+            // console.log(Buf)
             const FileBlob = new Blob([fileData], { type: file.type });
-            console.log(FileBlob);
+            // console.log(FileBlob);
             const fileObject = {
                 'filedata':fileData
             }
@@ -86,7 +88,7 @@ function Analyser() {
         };
 
     reader.readAsArrayBuffer(file);
-    console.log(FileBlobData)
+    // console.log(FileBlobData)
         }
         
         // let FileBlob = new Blob([Folder[0]],{type:'application/pdf'});
