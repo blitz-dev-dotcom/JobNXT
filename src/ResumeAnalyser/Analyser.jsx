@@ -7,7 +7,7 @@ import { FaFilePdf } from "react-icons/fa";
 import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
 function Analyser() {
-
+   var FileBlobData = [];
     const [TagValue,setTagValue] = useState('');
     const [Opac,setOpac] = useState(false)
     const [TagArr,setTagArr] = useState([]);
@@ -33,6 +33,7 @@ function Analyser() {
             }
         }
     }
+
     function DeleteTag(val) {
         let deletedtag = TagArr.filter((_, index) => index !== val);
         setTagArr(deletedtag);
@@ -67,8 +68,13 @@ function Analyser() {
 
         reader.onload = function(event) {
             const fileData = event.target.result;
+            console.log(fileData);
             const FileBlob = new Blob([fileData], { type: file.type });
-
+            console.log(FileBlob);
+            const fileObject = {
+                'filedata':fileData
+            }
+            FileBlobData.push(fileObject);
             const storageRef = ref(storage, '/Folder/' + file.name + v4());
             uploadBytes(storageRef, FileBlob)
                 .then(() => {
@@ -80,6 +86,7 @@ function Analyser() {
         };
 
     reader.readAsArrayBuffer(file);
+    console.log(FileBlobData)
         }
         
         // let FileBlob = new Blob([Folder[0]],{type:'application/pdf'});

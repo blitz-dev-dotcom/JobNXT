@@ -315,6 +315,12 @@
     border: none;
     outline: none;
     background-color: transparent;
+    font-weight: 800;
+    cursor: pointer;
+}
+.swap:hover{
+    text-decoration: underline;
+    color: rgb(119, 119, 255);
 }
 
 
@@ -333,7 +339,7 @@
     letter-spacing: 1px;
     place-items: center;
     padding: 10% 2% 2% 2%;
-    font-family: "Inter", sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .pana{
     height: 40px;
