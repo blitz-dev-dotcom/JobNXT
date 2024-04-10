@@ -14,6 +14,7 @@ import FillDetails from './components/FillDetails';
 import UploadResume from './components/UploadResume';
 import SavedResume from './components/SavedResume';
 import Analyser from './ResumeAnalyser/Analyser';
+import MachineModel from './ResumeAnalyser/MachineModel';
 
 
 
@@ -29,8 +30,9 @@ const route = createBrowserRouter(createRoutesFromElements(
     </Route>
   </Route>
   <Route path='/recruit' element={<Analyser/>}>
-
+  <Route path='ModelOutput' element={<MachineModel/>}/>
   </Route>
+  
   </>
   
 ))

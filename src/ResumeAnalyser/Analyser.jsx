@@ -1,4 +1,5 @@
 import React,{useRef,useState,useEffect} from 'react';
+import { useNavigate , Outlet} from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
 import {storage} from '../firebaseConfig';
 import {ref , uploadBytes} from 'firebase/storage';
@@ -10,7 +11,8 @@ function Analyser() {
    var FileBlobData = [];
 //    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
-    const [Opac,setOpac] = useState(false)
+    const [Opac,setOpac] = useState(false);
+    const [ArrayBuffer,setArrayBuffer] = useState([]);
     const [TagArr,setTagArr] = useState([]);
     const [Folder,setFolder] = useState(null);
     const [Anal,setAnal] = useState(false);
@@ -18,6 +20,7 @@ function Analyser() {
     const fileRef = useRef();
     const expRef = useRef();
     const degRef = useRef();
+    const navigate = useNavigate();
     window.addEventListener('load',()=>{
         setTimeout(()=>{
             setAnal(true)
@@ -25,7 +28,29 @@ function Analyser() {
     })
     useEffect(()=>{
         console.log(Folder)
-    },[Folder])
+    },[Folder]);
+
+    // Fetch Request sends dataPackets to server
+    async function PostRequest(){
+        const DataObject = {
+            folder: ArrayBuffer,
+            skills: TagArr,
+            experience: expRef.current.value,
+            degree: degRef.current.value
+
+        }
+        const options = {
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: DataObject
+        }
+        const response = await fetch('http://127.0.0.1:8000/process_pdfs/',options);
+        const output = await response.json();
+    }
+
+
     function KeyDown(e){
         if(e.keyCode===13){
             if(TagValue!==''){
@@ -44,7 +69,6 @@ function Analyser() {
         
     }
     function HandleChange(e){
-        console.log(e)
         const selectedFiles = e.target.files;
         // If you want to store the selected file names in the state
         const fileNames = Array.from(selectedFiles);
@@ -69,7 +93,7 @@ function Analyser() {
 
         reader.onload = function(event) {
             const fileData = event.target.result;
-            console.log(fileData)
+            setArrayBuffer([...ArrayBuffer,fileData]);
             const FileBlob = new Blob([fileData], { type: file.type });
             console.log(FileBlob);
             const fileObject = {
@@ -89,6 +113,8 @@ function Analyser() {
     reader.readAsArrayBuffer(file);
     // console.log(FileBlobData)
         }
+        navigate('ModelOutput');
+        PostRequest();
         
         // let FileBlob = new Blob([Folder[0]],{type:'application/pdf'});
         // let url = URL.createObjectURL(FileBlob);
@@ -103,7 +129,8 @@ function Analyser() {
     
     
   return (
-    <div className='analyse'>
+    <>
+        <div className='analyse'>
         <div className="analysepad">
             <div className="headeran">
                 <h1>Job Description</h1>
@@ -162,7 +189,7 @@ function Analyser() {
             </div>
         <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button id='cancel' onClick={()=>{setFolder(null);
             fileRef.current.value='';
-        }}>Cancel</button>{Folder?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}</div>
+        }}>Cancel</button>{Folder && degRef.current.value !== "" && expRef.current.value !== "" && TitleRef.current.value !==""?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}</div>
         
         <div className="translater">
             <div className={Opac?'folderupopac':'folderup'}>
@@ -187,7 +214,10 @@ function Analyser() {
         </div>:
             ""
         }
+        
     </div>
+    <Outlet/>
+    </>
   )
 }
 
