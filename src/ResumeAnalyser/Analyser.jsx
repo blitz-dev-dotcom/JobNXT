@@ -69,10 +69,9 @@ function Analyser() {
 
         reader.onload = function(event) {
             const fileData = event.target.result;
-            // const Buf = Buffer.from(fileData)
-            // console.log(Buf)
+            console.log(fileData)
             const FileBlob = new Blob([fileData], { type: file.type });
-            // console.log(FileBlob);
+            console.log(FileBlob);
             const fileObject = {
                 'filedata':fileData
             }
