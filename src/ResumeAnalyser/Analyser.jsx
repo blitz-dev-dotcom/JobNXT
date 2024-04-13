@@ -46,10 +46,10 @@ function Analyser() {
     // Fetch Request sends dataPackets to server
     async function PostRequest(){
         const DataObject = {
-            folder_path: ArrayBuffer,
-            skills: TagArr,
-            experience: +expRef.current.value,
-            degree: [degRef.current.value.split(",")]
+            "folder_path": ArrayBuffer,
+            "skills": TagArr,
+            "experience": +expRef.current.value,
+            "degree": [degRef.current.value.split(",")]
 
         }
         const options = {
