@@ -11,6 +11,7 @@ function Analyser() {
    var FileBlobData = [];
 //    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
+    const [AnalyseOpac,setAnalyseOpac] = useState(false);
     const [Opac,setOpac] = useState(false);
     const [ArrayBuffer,setArrayBuffer] = useState([]);
     const [TagArr,setTagArr] = useState([]);
@@ -30,13 +31,25 @@ function Analyser() {
         console.log(Folder)
     },[Folder]);
 
+    useEffect(() => {
+        if (Folder && degRef.current && expRef.current && TitleRef.current) {
+            if (degRef.current.value !== "" && expRef.current.value !== "" && TitleRef.current.value !== "") {
+                setAnalyseOpac(true)
+            } else {
+                console.log('.')
+            }
+        }
+    }, [Folder, degRef.current, expRef.current, TitleRef.current]);
+    
+    
+
     // Fetch Request sends dataPackets to server
     async function PostRequest(){
         const DataObject = {
-            folder: ArrayBuffer,
+            folder_path: ArrayBuffer,
             skills: TagArr,
-            experience: expRef.current.value,
-            degree: degRef.current.value
+            experience: +expRef.current.value,
+            degree: [degRef.current.value.split(",")]
 
         }
         const options = {
@@ -190,7 +203,7 @@ function Analyser() {
             </div>
         <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button id='cancel' onClick={()=>{setFolder(null);
             fileRef.current.value='';
-        }}>Cancel</button>{Folder && degRef.current.value !== "" && expRef.current.value !== "" && TitleRef.current.value !==""?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}</div>
+        }}>Cancel</button>{AnalyseOpac?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}</div>
         
         <div className="translater">
             <div className={Opac?'folderupopac':'folderup'}>
