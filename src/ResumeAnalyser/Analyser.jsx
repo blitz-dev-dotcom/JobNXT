@@ -17,10 +17,10 @@ function Analyser() {
     const [TagArr,setTagArr] = useState([]);
     const [Folder,setFolder] = useState(null);
     const [Anal,setAnal] = useState(false);
-    const TitleRef = useRef();
-    const fileRef = useRef();
-    const expRef = useRef();
-    const degRef = useRef();
+    const TitleRef = useRef('');
+    const fileRef = useRef('');
+    const expRef = useRef('');
+    const degRef = useRef('');
     const navigate = useNavigate();
     window.addEventListener('load',()=>{
         setTimeout(()=>{
@@ -39,7 +39,7 @@ function Analyser() {
                 console.log('.')
             }
         }
-    }, [Folder, degRef.current, expRef.current, TitleRef.current]);
+    }, [Folder, degRef.current.value, expRef.current.value, TitleRef.current.value]);
     
     
 
@@ -59,9 +59,13 @@ function Analyser() {
             },
             body: DataObject
         }
-        const response = await fetch('http://127.0.0.1:8000/process_pdfs/',options);
-        const output = await response.json();
-        console.log(output)
+        try {
+            const response = await fetch('http://127.0.0.1:8000/process_pdfs/',options);
+            const output = await response.json();
+            console.log(output)
+        } catch (error) {
+            console.log('error You are encountering is' ,':' , error)
+        }
     }
 
 
