@@ -59,13 +59,31 @@ function Analyser() {
             },
             body: DataObject
         }
-        try {
-            const response = await fetch('http://127.0.0.1:8000/process_pdfs/',options);
-            const output = await response.json();
-            console.log(output)
-        } catch (error) {
-            console.log('error You are encountering is' ,':' , error)
-        }
+        fetch('http://127.0.0.1:8000/ResumeRoleMatcher/',options)
+        .then(response=>{
+            if(!response.ok){
+                console.log('Error Occured while fetching the Resourse')
+            }
+            const responseHeader = response.headers.get('content-type')
+            if(responseHeader&&responseHeader === 'application/json'){
+                console.log(response.json())
+            }
+            else{
+                console.log(response.text())
+            }
+
+        })
+        .then(data=>{
+            if(Array.isArray(data)){
+                console.log(data)
+            }
+            else{
+                console.log('Response is Not in array format'+":"+data)
+            }
+        })
+        .catch(err=>{
+            console.log('error',':',err)
+        })
     }
 
 
