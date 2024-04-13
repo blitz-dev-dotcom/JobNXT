@@ -65,7 +65,7 @@ function Analyser() {
                 console.log('Error Occured while fetching the Resourse')
             }
             const responseHeader = response.headers.get('content-type')
-            if(responseHeader&&responseHeader === 'application/json'){
+            if(responseHeader&&responseHeader.includes('application/json')){
                 console.log(response.json())
             }
             else{
