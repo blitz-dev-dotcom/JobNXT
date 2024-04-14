@@ -9,13 +9,14 @@ import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
 function Analyser() {
    var FileBlobData = [];
+   var UuidTokenUnique;
 //    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
     const [AnalyseOpac,setAnalyseOpac] = useState(false);
     const [Opac,setOpac] = useState(false);
     const [ArrayBuffer,setArrayBuffer] = useState([]);
     const [TagArr,setTagArr] = useState([]);
-    const [Folder,setFolder] = useState(null);
+    const [Folder,setFolder] = useState([]);
     const [Anal,setAnal] = useState(false);
     const TitleRef = useRef('');
     const fileRef = useRef('');
@@ -28,7 +29,7 @@ function Analyser() {
         },1500)
     })
     useEffect(()=>{
-        console.log(Folder)
+        UuidTokenUnique = v4();
     },[Folder]);
 
     useEffect(() => {
@@ -44,43 +45,7 @@ function Analyser() {
     
 
     // Fetch Request sends dataPackets to server
-    async function PostRequest(){
-        const DataObject = {
-            "folder_path": ArrayBuffer,
-            "skills": TagArr,
-            "experience": +expRef.current.value,
-            "degree": [degRef.current.value.split(",")]
-
-        }
-        const options = {
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: DataObject
-        }
-        try {
-            const response = await fetch('http://127.0.0.1:8000/ResumeRoleMatcher/', options);
-            if (!response.ok) {
-                console.log('Error Occurred while fetching the Resource');
-                return;
-            }
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                const data = await response.json();
-                if (Array.isArray(data)) {
-                    console.log(data);
-                } else {
-                    console.log('Response is Not in array format: ', data);
-                }
-            } else {
-                const data = await response.text();
-                console.log('Response is Not in JSON format: ', data);
-            }
-        } catch (err) {
-            console.log('Error:', err);
-        }
-    }
+    
 
 
     function KeyDown(e){
@@ -127,12 +92,13 @@ function Analyser() {
             const fileData = event.target.result;
             setArrayBuffer([...ArrayBuffer,fileData]);
             const FileBlob = new Blob([fileData], { type: file.type });
-            console.log(FileBlob);
+            console.log(FileBlob)
+            // setStorageFile([...StorageFile,FileBlob])
             const fileObject = {
                 'filedata':fileData
             }
             FileBlobData.push(fileObject);
-            const storageRef = ref(storage, '/Folder/' + file.name + v4());
+            const storageRef = ref(storage, `Folder${UuidTokenUnique}/` + file.name );
             uploadBytes(storageRef, FileBlob)
                 .then(() => {
                     console.log('success');
@@ -143,7 +109,6 @@ function Analyser() {
         };
 
     reader.readAsArrayBuffer(file);
-    // console.log(FileBlobData)
         }
         navigate('ModelOutput');
         PostRequest();
@@ -156,6 +121,43 @@ function Analyser() {
         // const images = ref(storage,`/images/${FileBlob}`)
         // uploadBytes(images).then(()=>{alert('file uplad successfull')})
         // .catch(()=>{alert('error')})
+    }
+    async function PostRequest(){
+        const DataObject = {
+            "folder_path": UuidTokenUnique,
+            "skills": TagArr,
+            "experience": +expRef.current.value,
+            "degree": [degRef.current.value.split(",")]
+
+        }
+        const options = {
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: DataObject
+        }
+        try {
+            const response = await fetch('http://127.0.0.1:8000/ResumeRoleMatcher/', options);
+            if (!response.ok) {
+                console.log('Error Occurred while fetching the Resource');
+                return;
+            }
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    console.log(data);
+                } else {
+                    console.log('Response is Not in array format: ', data);
+                }
+            } else {
+                const data = await response.text();
+                console.log('Response is Not in JSON format: ', data);
+            }
+        } catch (err) {
+            console.log('Error:', err);
+        }
     }
     
     
