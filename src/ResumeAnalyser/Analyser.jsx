@@ -46,10 +46,10 @@ function Analyser() {
     // Fetch Request sends dataPackets to server
     async function PostRequest(){
         const DataObject = {
-            "folder_path": ArrayBuffer[0],
-            "skills": ['html','css','js'],
-            "experience": 3,
-            "degree": ['B.E computer science and engineering','B.E information Techonology']
+            "folder_path": ArrayBuffer,
+            "skills": TagArr,
+            "experience": +expRef.current.value,
+            "degree": [degRef.current.value.split(",")]
 
         }
         const options = {
@@ -59,31 +59,27 @@ function Analyser() {
             },
             body: DataObject
         }
-        fetch('http://127.0.0.1:8000/ResumeRoleMatcher/',options)
-        .then(response=>{
-            if(!response.ok){
-                console.log('Error Occured while fetching the Resourse')
+        try {
+            const response = await fetch('http://127.0.0.1:8000/ResumeRoleMatcher/', options);
+            if (!response.ok) {
+                console.log('Error Occurred while fetching the Resource');
+                return;
             }
-            const responseHeader = response.headers.get('content-type')
-            if(responseHeader&&responseHeader.includes('application/json')){
-                console.log(response.json())
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    console.log(data);
+                } else {
+                    console.log('Response is Not in array format: ', data);
+                }
+            } else {
+                const data = await response.text();
+                console.log('Response is Not in JSON format: ', data);
             }
-            else{
-                console.log(response.text())
-            }
-
-        })
-        .then(data=>{
-            if(Array.isArray(data)){
-                console.log(data)
-            }
-            else{
-                console.log('Response is Not in array format'+":"+data)
-            }
-        })
-        .catch(err=>{
-            console.log('error',':',err)
-        })
+        } catch (err) {
+            console.log('Error:', err);
+        }
     }
 
 
