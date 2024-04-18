@@ -142,8 +142,14 @@ function Analyser() {
         try {
             const response = await fetch('http://127.0.0.1:8000/ResumeRoleMatcher/', options);
             const data = await response.json();
-            console.log(response)
-            console.log(data)
+            if(!response.ok){
+                console.log('Unexpected error occured ! please Try again later')
+            }
+            else{
+                console.log(response)
+                console.log(data)
+            }
+            // This Line of Code intended for future use if the Response is not in the object format then enable it to display in the array format
             // try {
             //     const contentType = response.headers.get('content-type');
             //     if (contentType && contentType.includes('application/json')) {
