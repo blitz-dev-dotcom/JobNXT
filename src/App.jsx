@@ -18,7 +18,7 @@ function App() {
               <img src={indeximage} alt="" className='indeximg' />
               <p>Tell us about yourself !!?</p>
               <div className="indexbut">
-              <Link to='/recruit'><button className='hirebut'>TO HIRE</button></Link>
+                <Link to='/recruit'><button className='hirebut'>TO HIRE</button></Link>
                 <Link to='getDetails/fill'><button className='hirebut'>GET HIRED</button></Link>
               </div>
           </div>

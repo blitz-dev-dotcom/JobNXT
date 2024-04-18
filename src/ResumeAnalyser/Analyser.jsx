@@ -9,7 +9,7 @@ import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
 function Analyser() {
    var FileBlobData = [];
-   var UuidTokenUnique;
+   var UuidTokenUnique = v4();
 //    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
     const [AnalyseOpac,setAnalyseOpac] = useState(false);
@@ -124,7 +124,7 @@ function Analyser() {
     }
     async function PostRequest(){
         const DataObject = {
-            "folder_path": UuidTokenUnique,
+            "folder_name": `Folder${UuidTokenUnique}/`,
             "skills": TagArr,
             "experience": +expRef.current.value,
             "degree": [degRef.current.value.split(",")]
