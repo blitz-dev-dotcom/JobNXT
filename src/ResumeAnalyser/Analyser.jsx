@@ -139,12 +139,9 @@ function Analyser() {
         }
         try {
             const response = await fetch('http://127.0.0.1:8000/ResumeRoleMatcher/', options);
-            if (!response.ok) {
-                console.log('Error Occurred while fetching the Resource');
-                return;
-            }
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
+            try {
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
                 const data = await response.json();
                 if (Array.isArray(data)) {
                     console.log(data);
@@ -154,6 +151,9 @@ function Analyser() {
             } else {
                 const data = await response.text();
                 console.log('Response is Not in JSON format: ', data);
+            }
+            } catch (error) {
+                console.log(error)
             }
         } catch (err) {
             console.log('Error:', err);
