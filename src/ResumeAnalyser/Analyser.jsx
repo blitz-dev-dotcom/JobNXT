@@ -8,6 +8,7 @@ import { FaFilePdf } from "react-icons/fa";
 import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
 function Analyser() {
+    
    var FileBlobData = [];
    var UuidTokenUnique = v4();
 //    var fs = require('fs');
@@ -123,6 +124,7 @@ function Analyser() {
         // .catch(()=>{alert('error')})
     }
     async function PostRequest(){
+        const fetch = require('node-fetch');
         const DataObject = {
             "folder_name": `Folder${UuidTokenUnique}/`,
             "skills": TagArr,
@@ -135,26 +137,29 @@ function Analyser() {
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: DataObject
+            body: JSON.stringify(DataObject)
         }
         try {
             const response = await fetch('http://127.0.0.1:8000/ResumeRoleMatcher/', options);
-            try {
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('application/json')) {
-                const data = await response.json();
-                if (Array.isArray(data)) {
-                    console.log(data);
-                } else {
-                    console.log('Response is Not in array format: ', data);
-                }
-            } else {
-                const data = await response.text();
-                console.log('Response is Not in JSON format: ', data);
-            }
-            } catch (error) {
-                console.log(error)
-            }
+            const data = await response.json();
+            console.log(response)
+            console.log(data)
+            // try {
+            //     const contentType = response.headers.get('content-type');
+            //     if (contentType && contentType.includes('application/json')) {
+            //     const data = await response.json();
+            //     if (Array.isArray(data)) {
+            //         console.log(data);
+            //     } else {
+            //         console.log('Response is Not in array format: ', data);
+            //     }
+            // } else {
+            //     const data = await response.text();
+            //     console.log('Response is Not in JSON format: ', data);
+            // }
+            // } catch (error) {
+            //     console.log(error)
+            // }
         } catch (err) {
             console.log('Error:', err);
         }
