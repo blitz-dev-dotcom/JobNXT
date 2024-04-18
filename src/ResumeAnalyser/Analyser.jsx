@@ -8,7 +8,6 @@ import { FaFilePdf } from "react-icons/fa";
 import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
 function Analyser() {
-    
    var FileBlobData = [];
    var UuidTokenUnique = v4();
 //    var fs = require('fs');
@@ -124,7 +123,7 @@ function Analyser() {
         // .catch(()=>{alert('error')})
     }
     async function PostRequest(){
-        const fetch = require('node-fetch');
+        
         const DataObject = {
             "folder_name": `Folder${UuidTokenUnique}/`,
             "skills": TagArr,
