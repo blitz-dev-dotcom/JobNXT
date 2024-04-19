@@ -124,18 +124,18 @@ function Analyser() {
         // .catch(()=>{alert('error')})
     }
     async function PostRequest(){
-        
+        console.log(TagArr)
         const DataObject = {
             "folder_name": `Folder${UuidTokenUnique}/`,
-            "skills": TagArr,
+            "skills": TagArr.join(),
             "experience": +expRef.current.value,
-            "degree": [degRef.current.value.split(",")]
+            "degree": degRef.current.value.split(",").join()
 
         }
-        
         try {
             const response = await axios.post('http://127.0.0.1:8000/ResumeRoleMatcher/',DataObject)
-            console.log(response.data);
+            console.log('Response status:', response.status);
+            console.log('Response data:', response.data);
             const data = await response.json();
             if(!response.ok){
                 console.log('Unexpected error occured ! please Try again later')
