@@ -1,4 +1,5 @@
 import React,{useRef,useState,useEffect} from 'react';
+import axios from 'axios';
 import { useNavigate , Outlet} from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
 import {storage} from '../firebaseConfig';
@@ -131,15 +132,10 @@ function Analyser() {
             "degree": [degRef.current.value.split(",")]
 
         }
-        const options = {
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(DataObject)
-        }
+        
         try {
-            const response = await fetch('http://127.0.0.1:8000/ResumeRoleMatcher/', options);
+            const response = await axios.post('http://127.0.0.1:8000/ResumeRoleMatcher/',DataObject)
+            console.log(response.data);
             const data = await response.json();
             if(!response.ok){
                 console.log('Unexpected error occured ! please Try again later')
