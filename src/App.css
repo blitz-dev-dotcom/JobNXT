@@ -1028,22 +1028,29 @@ height: 4px;
     justify-content: center;
     align-items: center;
 }
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
+.modelpad{
+    height: 90%;
     width: 90%;
-    height: 80%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+    background-color: #dfcc9d;
+    display: flex;
+    flex-direction: column;
+}
+.row1{
+    height: 100px;
+    display: grid;
+
+}
+.sno{
+    
+    background-color: #0b57d0;
+}
+.resume{
+    background-color: red;
+}
+.rating{
+    background-color: #1a1e4a;
+}
+
 @media (max-width:640px){
     /* analyser */
     .analysepad{

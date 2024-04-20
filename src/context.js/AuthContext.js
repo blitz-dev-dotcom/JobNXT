@@ -26,6 +26,7 @@ export function AuthProvider ({children}){
     const [loading , setloading] = useState(false);
     const [valid,setvalid] = useState(false);
     const {setItem} = useLocalStorage('login time');
+    const [Ranks,setRanks] = useState();
 
         function epochTimeHandler(){
 
@@ -106,7 +107,9 @@ export function AuthProvider ({children}){
         loading,
         setloading,
         valid,
-        setvalid
+        setvalid,
+        Ranks,
+        setRanks
 
         
     }

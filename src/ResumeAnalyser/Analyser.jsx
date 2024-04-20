@@ -8,12 +8,14 @@ import {v4} from 'uuid';
 import { FaFilePdf } from "react-icons/fa";
 import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import useAuth from '../context.js/AuthContext';
 function Analyser() {
    var FileBlobData = [];
    var UuidTokenUnique = v4();
 //    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
     const [AnalyseOpac,setAnalyseOpac] = useState(false);
+    const [dataProps,setdataProps] = useState(); // holds the score to send porps for machine model.jsx
     const [Opac,setOpac] = useState(false);
     const [ArrayBuffer,setArrayBuffer] = useState([]);
     const [TagArr,setTagArr] = useState([]);
@@ -23,6 +25,8 @@ function Analyser() {
     const fileRef = useRef('');
     const expRef = useRef('');
     const degRef = useRef('');
+    const {Ranks} = useAuth();
+    const {setRanks} = useAuth();
     const navigate = useNavigate();
     window.addEventListener('load',()=>{
         setTimeout(()=>{
@@ -124,6 +128,7 @@ function Analyser() {
         // .catch(()=>{alert('error')})
     }
     async function PostRequest(){
+        
         console.log(TagArr)
         const DataObject = {
             "folder_name": `Folder${UuidTokenUnique}/`,
@@ -135,14 +140,12 @@ function Analyser() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/ResumeRoleMatcher/',DataObject)
             console.log('Response status:', response.status);
-            console.log('Response data:', response.data);
-            const data = await response.json();
+            setRanks(response.data)
             if(!response.ok){
                 console.log('Unexpected error occured ! please Try again later')
             }
             else{
-                console.log(response)
-                console.log(data)
+                console.log('Response is',response);
             }
             // This Line of Code intended for future use if the Response is not in the object format then enable it to display in the array format
             // try {
@@ -164,6 +167,7 @@ function Analyser() {
         } catch (err) {
             console.log('Error:', err);
         }
+        console.log('dataProps State is',':',Ranks)
     }
     
     

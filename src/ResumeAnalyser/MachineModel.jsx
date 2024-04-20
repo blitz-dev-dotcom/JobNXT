@@ -1,47 +1,20 @@
 import React from 'react';
+import useAuth from '../context.js/AuthContext';
 
 function MachineModel() {
+  const {Ranks} = useAuth();
+  
   return (
     <div className='Model'>
-        <table>
-  <tr>
-    <th>Rank</th>
-    <th>Resume Name</th>
-    <th>Download Pdf</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-</table>
+        <div className="modelpad">
+          <div className="row1">
+            <div className="sno"></div>
+            <div className="resume"></div>
+            <div className="rating"></div>
+          </div>
+        </div>
     </div>
   )
 }
 
-export default MachineModel
+export default MachineModel;
