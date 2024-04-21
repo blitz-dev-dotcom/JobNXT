@@ -9,13 +9,13 @@ function MachineModel() {
         <div className="modelpad">
           <div className="row1">
             <div className="sno flex">
-              <h1>S.NO</h1>
+              <h1 className='modelhead'>S.NO</h1>
             </div>
             <div className="resume flex">
-              <h1>Resume</h1>
+              <h1 className='modelhead'>Resume</h1>
             </div>
             <div className="rating flex">
-              <h1>Ranks</h1>
+              <h1 className='modelhead'>Score</h1>
             </div>
           </div>
           {
