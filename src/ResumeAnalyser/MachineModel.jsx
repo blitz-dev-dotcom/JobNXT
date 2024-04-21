@@ -27,7 +27,7 @@ function MachineModel() {
                     <p>{index + 1}</p>
                   </div>
                   <div className="resume flex">
-                    <a href={item.folder} target='_blank'>{item.folder.name}</a>
+                    <a href={item.folder.name} target='_blank'>{item.folder.name}</a>
                   </div>
                   <div className="rating flex">
                     <p>{item.Rank}</p>
