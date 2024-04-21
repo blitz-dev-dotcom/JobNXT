@@ -8,13 +8,13 @@ import Login from './components/Login';
 import Layout from './components/Layout';
 import GetHired from './components/GetHired';
 import { AuthProvider } from './context.js/AuthContext';
-import ProtectedRoute from './ProtectedRoute';
 import App from './App';
 import FillDetails from './components/FillDetails';
 import UploadResume from './components/UploadResume';
 import SavedResume from './components/SavedResume';
 import Analyser from './ResumeAnalyser/Analyser';
 import MachineModel from './ResumeAnalyser/MachineModel';
+import PrivateRoutes from './PrivateRoutes';
 
 
 
@@ -31,7 +31,7 @@ const route = createBrowserRouter(createRoutesFromElements(
   </Route>
   <Route path='/recruit' element={<Analyser/>}>
   </Route>
-  <Route path='/ModelOutput' element={<MachineModel/>}/>
+  <Route path='/ModelOutput' element={<PrivateRoutes/>}/>
   
   </>
   

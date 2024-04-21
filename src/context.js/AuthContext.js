@@ -61,6 +61,7 @@ export function AuthProvider ({children}){
             }
         ]
         const [CandidList,setCandidList] = useState(null);
+        const [DataGet,setDataGet] = useState(false);
 
         function SignIn(email,password){
             signInWithEmailAndPassword(auth,email,password)
@@ -139,7 +140,9 @@ export function AuthProvider ({children}){
         valid,
         setvalid,
         CandidList,
-        setCandidList
+        setCandidList,
+        DataGet,
+        setDataGet
 
         
     }

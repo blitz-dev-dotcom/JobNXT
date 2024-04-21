@@ -16,6 +16,7 @@ function Analyser() {
    var UuidTokenUnique = v4();
 //    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
+    const {setDataGet} = useAuth();
     const [AnalyseOpac,setAnalyseOpac] = useState(false);
     const [Ranks,setRanks] = useState(); // holds the score to send porps for machine model.jsx
     const [Opac,setOpac] = useState(false);
@@ -151,6 +152,7 @@ function Analyser() {
             }
             else if(response.status === 200){
                 sortingRanks(Ranks,Folder);
+                setDataGet(true);
                 navigate('/ModelOutput');
             }
             
