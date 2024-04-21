@@ -12,9 +12,8 @@ import { SiWelcometothejungle } from "react-icons/si";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import useAuth from '../context.js/AuthContext';
 function Analyser() {
-   var FileBlobData = [];
-   var UuidTokenUnique = v4();
-//    var fs = require('fs');
+    var FileBlobData = [];
+    var UuidTokenUnique = v4();
     const [TagValue,setTagValue] = useState('');
     const {setDataGet} = useAuth();
     const [AnalyseOpac,setAnalyseOpac] = useState(false);
@@ -38,8 +37,9 @@ function Analyser() {
     })
     useEffect(()=>{
         UuidTokenUnique = v4();
-        console.log(Folder)
+        console.log(Folder);
     },[Folder]);
+    
      const notify = (a) => toast(a)
     useEffect(() => {
         if (Folder && degRef.current && expRef.current && TitleRef.current) {
@@ -176,11 +176,14 @@ function Analyser() {
 
         arr.sort((a, b) => b.Rank - a.Rank);
         setCandidList(arr)
+
     }
+    
     
     
   return (
     <>
+        {/* <a href={dummy.name} target='_blank'>hello</a> */}
         <div className='analyse'>
         <div className="analysepad">
             <div className="headeran">
