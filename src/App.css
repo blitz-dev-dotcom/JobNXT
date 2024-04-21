@@ -7,6 +7,24 @@
     box-sizing: border-box;
     user-select: none;
 }
+::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #aaa8a8;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 .loader{
     position: absolute;
     height: 100vh;
@@ -1027,29 +1045,95 @@ height: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #0b57d0;
 }
+
 .modelpad{
     height: 90%;
     width: 90%;
-    background-color: #dfcc9d;
-    display: flex;
-    flex-direction: column;
+    overflow-y: scroll ;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(209, 213, 219, 0.3);
 }
+
 .row1{
     height: 100px;
     display: grid;
+    margin: 3px 0 3px 0;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        'c1 c2 c3'
+    ;
+    background-color: #ffffff;
+   
 
 }
+
 .sno{
-    
-    background-color: #0b57d0;
+    grid-area: c1;
+    color: rgb(0, 0, 0) ;
+    font-family: 'Courier New', Courier, monospace;
 }
 .resume{
-    background-color: red;
+    grid-area: c2;
+    color: rgb(0, 0, 0) ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .rating{
-    background-color: #1a1e4a;
+    grid-area: c3;
+    color: rgb(0, 0, 0) ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
+.analyseOverlay{
+    position: absolute;
+    inset: 0;
+    background-color: white;
+    flex-direction: column;
+    gap: 6px;
+}
+.false{
+    display: none;
+}
+.analyseOverlay > p{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
+    background-color:transparent;
+  }
+  .loader::before , .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #6b6969;
+    animation: prixClipFix 2s linear infinite ;
+  }
+  .loader::after{
+    inset: 8px;
+    transform: rotate3d(90, 90, 0, 180deg );
+    border-color: #e5a708;
+  }
+
+  @keyframes rotate {
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
+  }
+
+  @keyframes prixClipFix {
+      0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+      75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+  }
 
 @media (max-width:640px){
     /* analyser */

@@ -26,11 +26,41 @@ export function AuthProvider ({children}){
     const [loading , setloading] = useState(false);
     const [valid,setvalid] = useState(false);
     const {setItem} = useLocalStorage('login time');
-    const [Ranks,setRanks] = useState();
+    
 
-        function epochTimeHandler(){
+        // function epochTimeHandler(){
 
-        }
+        // }
+        const dummyarr = [
+            {Rank:20,
+             folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            },
+            {Rank:20,
+                folder:{name:'ajay.pdf'}
+            }
+        ]
+        const [CandidList,setCandidList] = useState(null);
 
         function SignIn(email,password){
             signInWithEmailAndPassword(auth,email,password)
@@ -108,8 +138,8 @@ export function AuthProvider ({children}){
         setloading,
         valid,
         setvalid,
-        Ranks,
-        setRanks
+        CandidList,
+        setCandidList
 
         
     }

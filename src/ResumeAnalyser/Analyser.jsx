@@ -1,6 +1,8 @@
 import React,{useRef,useState,useEffect} from 'react';
 import axios from 'axios';
-import { useNavigate , Outlet} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {ToastContainer , toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { IoMdClose } from "react-icons/io";
 import {storage} from '../firebaseConfig';
 import {ref , uploadBytes} from 'firebase/storage';
@@ -15,7 +17,7 @@ function Analyser() {
 //    var fs = require('fs');
     const [TagValue,setTagValue] = useState('');
     const [AnalyseOpac,setAnalyseOpac] = useState(false);
-    const [dataProps,setdataProps] = useState(); // holds the score to send porps for machine model.jsx
+    const [Ranks,setRanks] = useState(); // holds the score to send porps for machine model.jsx
     const [Opac,setOpac] = useState(false);
     const [ArrayBuffer,setArrayBuffer] = useState([]);
     const [TagArr,setTagArr] = useState([]);
@@ -25,9 +27,9 @@ function Analyser() {
     const fileRef = useRef('');
     const expRef = useRef('');
     const degRef = useRef('');
-    const {Ranks} = useAuth();
-    const {setRanks} = useAuth();
+    const {setCandidList} = useAuth();
     const navigate = useNavigate();
+    const [pseudo,setpseudo] = useState(false)
     window.addEventListener('load',()=>{
         setTimeout(()=>{
             setAnal(true)
@@ -35,8 +37,9 @@ function Analyser() {
     })
     useEffect(()=>{
         UuidTokenUnique = v4();
+        console.log(Folder)
     },[Folder]);
-
+     const notify = (a) => toast(a)
     useEffect(() => {
         if (Folder && degRef.current && expRef.current && TitleRef.current) {
             if (degRef.current.value !== "" && expRef.current.value !== "" && TitleRef.current.value !== "") {
@@ -84,7 +87,7 @@ function Analyser() {
         }
     }
     function HandleFire(e){
-        e.preventDefault();
+        
         if (!Folder || !Folder[0]) {
             alert('Please select a file');
             return;
@@ -115,7 +118,6 @@ function Analyser() {
 
     reader.readAsArrayBuffer(file);
         }
-        navigate('ModelOutput');
         PostRequest();
         
         // let FileBlob = new Blob([Folder[0]],{type:'application/pdf'});
@@ -128,8 +130,9 @@ function Analyser() {
         // .catch(()=>{alert('error')})
     }
     async function PostRequest(){
-        
-        console.log(TagArr)
+        setTimeout(()=>{
+            setpseudo(true)
+        },1000);
         const DataObject = {
             "folder_name": `Folder${UuidTokenUnique}/`,
             "skills": TagArr.join(),
@@ -138,38 +141,40 @@ function Analyser() {
 
         }
         try {
-            const response = await axios.post('http://127.0.0.1:8000/ResumeRoleMatcher/',DataObject)
+            const response = await axios.post('http://127.0.0.1:8000/ResumeRoleMatcher/',DataObject);
             console.log('Response status:', response.status);
-            setRanks(response.data)
-            if(!response.ok){
-                console.log('Unexpected error occured ! please Try again later')
+            console.log(response.data.score)
+            setRanks(response.data.score);
+            if(!response.status===200){
+                setpseudo(false)
+                notify('Api error ! Try again After sometime')
             }
-            else{
-                console.log('Response is',response);
+            else if(response.status === 200){
+                sortingRanks(Ranks,Folder);
+                navigate('/ModelOutput');
             }
-            // This Line of Code intended for future use if the Response is not in the object format then enable it to display in the array format
-            // try {
-            //     const contentType = response.headers.get('content-type');
-            //     if (contentType && contentType.includes('application/json')) {
-            //     const data = await response.json();
-            //     if (Array.isArray(data)) {
-            //         console.log(data);
-            //     } else {
-            //         console.log('Response is Not in array format: ', data);
-            //     }
-            // } else {
-            //     const data = await response.text();
-            //     console.log('Response is Not in JSON format: ', data);
-            // }
-            // } catch (error) {
-            //     console.log(error)
-            // }
+            
+            
         } catch (err) {
-            console.log('Error:', err);
+            setpseudo(false)
+            notify('Network error ! Check your Network connection')
         }
-        console.log('dataProps State is',':',Ranks)
+        
     }
-    
+    function sortingRanks(a,b){
+        let arr = []
+
+        for(let i= 0 ; i<a.length ; i++){
+            let key = parseFloat(a[i])
+            arr.push({
+                    Rank:key,
+                    folder:b[i]
+                })
+        }
+
+        arr.sort((a, b) => b.Rank - a.Rank);
+        setCandidList(arr)
+    }
     
     
   return (
@@ -260,7 +265,11 @@ function Analyser() {
         }
         
     </div>
-    <Outlet/>
+    <ToastContainer/>
+    <div className= {pseudo ? 'analyseOverlay flex' : 'false'  }>
+        <span class="loader"></span>
+        <p>Please Wait Our Model is Running in Progress ! This will Take a While</p>
+    </div>
     </>
   )
 }
