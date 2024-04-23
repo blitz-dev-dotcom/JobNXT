@@ -15,6 +15,7 @@ import SavedResume from './components/SavedResume';
 import Analyser from './ResumeAnalyser/Analyser';
 import MachineModel from './ResumeAnalyser/MachineModel';
 import PrivateRoutes from './PrivateRoutes';
+import { RequiredAuth } from './components/RequiredAuth';
 
 
 
