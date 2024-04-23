@@ -4,11 +4,11 @@ import { Navigate } from 'react-router-dom';
 import MisRoute from './MisRoute/MisRoute';
 
 
-function PrivateRoutes() {
+function PrivateRoutes({children}) {
     const {DataGet} = useAuth();
   
     if(DataGet){
-      return <Navigate to='/ModelOutput' />
+      return children
     }
 
     return <MisRoute/>

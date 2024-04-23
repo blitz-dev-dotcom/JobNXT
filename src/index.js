@@ -32,7 +32,7 @@ const route = createBrowserRouter(createRoutesFromElements(
   </Route>
   <Route path='/recruit' element={<Analyser/>}>
   </Route>
-  <Route path='/ModelOutput' element={<PrivateRoutes/>}/>
+  <Route path='/ModelOutput' element={<PrivateRoutes><MachineModel /></PrivateRoutes>}/>
   
   </>
   
