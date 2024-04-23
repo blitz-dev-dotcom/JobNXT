@@ -29,7 +29,8 @@ function Analyser() {
     const degRef = useRef('');
     const {setCandidList} = useAuth();
     const navigate = useNavigate();
-    const [pseudo,setpseudo] = useState(false)
+    const [pseudo,setpseudo] = useState(false);
+    const [ObjectUrl,setObjectUrl] = useState([]);
     window.addEventListener('load',()=>{
         setTimeout(()=>{
             setAnal(true)
@@ -106,6 +107,8 @@ function Analyser() {
             const fileObject = {
                 'filedata':fileData
             }
+            const url = URL.createObjectURL(FileBlob);
+            ObjectUrl.push(url);
             FileBlobData.push(fileObject);
             const storageRef = ref(storage, `Folder${UuidTokenUnique}/` + file.name );
             uploadBytes(storageRef, FileBlob)
@@ -144,15 +147,15 @@ function Analyser() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/ResumeRoleMatcher/',DataObject);
             console.log('Response status:', response.status);
-            console.log(response.data.score)
+            console.log(response.data.score);
             setRanks(response.data.score);
             if(!response.status===200){
                 setpseudo(false)
                 notify('Api error ! Try again After sometime')
             }
             else if(response.status === 200){
-                sortingRanks(Ranks,Folder);
-                setDataGet(true);
+                sortingRanks(Ranks,Folder,ObjectUrl);
+                setDataGet(true); //to enable the access for ModelOutput component in private routes
                 navigate('/ModelOutput');
             }
             
@@ -163,14 +166,15 @@ function Analyser() {
         }
         
     }
-    function sortingRanks(a,b){
+    function sortingRanks(a,b,c){
         let arr = []
 
         for(let i= 0 ; i<a.length ; i++){
             let key = parseFloat(a[i])
             arr.push({
                     Rank:key,
-                    folder:b[i]
+                    folder:b[i],
+                    url:c[i]
                 })
         }
 
