@@ -137,6 +137,8 @@ function Analyser() {
         setTimeout(()=>{
             setpseudo(true)
         },1000);
+        console.log(ObjectUrl)
+        console.log(Folder)
         const DataObject = {
             "folder_name": `Folder${UuidTokenUnique}/`,
             "skills": TagArr.join(),
