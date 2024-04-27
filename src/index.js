@@ -38,6 +38,7 @@ const route = createBrowserRouter(createRoutesFromElements(
   
 ))
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <AuthProvider>
     <RouterProvider router = {route} />

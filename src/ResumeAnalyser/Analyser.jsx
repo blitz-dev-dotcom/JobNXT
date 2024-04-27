@@ -36,6 +36,12 @@ function Analyser() {
             setAnal(true)
         },1500)
     })
+    window.addEventListener('offline',()=>{
+        notify('you are offline')
+    })
+    window.addEventListener('online',()=>{
+        notify('Back Online')
+    })
     useEffect(()=>{
         UuidTokenUnique = v4();
         console.log(Folder);
