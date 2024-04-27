@@ -3,7 +3,7 @@ import useAuth from '../context.js/AuthContext';
 
 function MachineModel() {
   const {CandidList} = useAuth();
-  window.addEventListener('load',()=>{console.log(CandidList)})
+  window.addEventListener('load',()=>{console.log('overall array containing ranks and else' , CandidList)})
   return (
     <div className='Model'>
         <div className="modelpad">

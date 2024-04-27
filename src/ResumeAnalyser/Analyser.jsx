@@ -137,8 +137,8 @@ function Analyser() {
         setTimeout(()=>{
             setpseudo(true)
         },1000);
-        console.log(ObjectUrl)
-        console.log(Folder)
+        console.log('url for opening file',ObjectUrl)
+        console.log('array containing folders' , Folder)
         const DataObject = {
             "folder_name": `Folder${UuidTokenUnique}/`,
             "skills": TagArr.join(),
