@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter , RouterProvider ,createRoutesFromElements, Route } from 'react-router-dom';
+import { createBrowserRouter , RouterProvider ,createRoutesFromElements, Route , BrowserRouter } from 'react-router-dom';
 import ErrorPage from './MisRoute/MisRoute';
 import Login from './components/Login';
 import Layout from './components/Layout';
@@ -30,9 +30,9 @@ const route = createBrowserRouter(createRoutesFromElements(
       <Route path='saved' element={<SavedResume/>} />
     </Route>
   </Route>
-  <Route path='/recruit' element={<Analyser/>}>
+  <Route path='/recruit' element={<PrivateRoutes><Analyser/></PrivateRoutes>}>
   </Route>
-  <Route path='/ModelOutput' element={<PrivateRoutes><MachineModel /></PrivateRoutes>}/>
+  <Route path='/ModelOutput' element={<MachineModel />}/>
   
   </>
   

@@ -1100,9 +1100,14 @@ height: 4px;
     inset: 0;
     background-color: white;
     flex-direction: column;
-    gap: 6px;
 }
 .false{
+    display: none;
+}
+.block{
+    display: block;
+}
+.none{
     display: none;
 }
 .analyseOverlay > p{

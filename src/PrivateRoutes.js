@@ -1,16 +1,19 @@
 import React from 'react';
 import useAuth from './context.js/AuthContext';
-import MisRoute from './MisRoute/MisRoute';
+import { Navigate } from 'react-router-dom';
 
+function PrivateRoutes({ children }) {
+    const { CurrentUser } = useAuth();
 
-function PrivateRoutes({children}) {
-    const {DataGet} = useAuth();
-  
-    if(DataGet){
-      return children
-    }
-
-    return <MisRoute/>
+    return (
+        <>
+            {CurrentUser ? (
+                children
+            ) : (
+                <Navigate to="/login" />
+            )}
+        </>
+    );
 }
 
 export default PrivateRoutes;

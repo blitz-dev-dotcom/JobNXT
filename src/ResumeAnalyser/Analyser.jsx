@@ -1,6 +1,6 @@
 import React,{useRef,useState,useEffect} from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Navigate } from 'react-router-dom';
 import {ToastContainer , toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoMdClose } from "react-icons/io";
@@ -15,7 +15,7 @@ function Analyser() {
     var FileBlobData = [];
     var UuidTokenUnique = v4();
     const [TagValue,setTagValue] = useState('');
-    const {setDataGet} = useAuth();
+    const {setDataGet , DataGet} = useAuth();
     const [AnalyseOpac,setAnalyseOpac] = useState(false);
     const [Ranks,setRanks] = useState(); // holds the score to send porps for machine model.jsx
     const [Opac,setOpac] = useState(false);
@@ -150,30 +150,32 @@ function Analyser() {
             "skills": TagArr.join(),
             "experience": +expRef.current.value,
             "degree": degRef.current.value.split(",").join()
-
+    
         }
         try {
             const response = await axios.post('http://127.0.0.1:8000/ResumeRoleMatcher/',DataObject);
             console.log('Response status:', response.status);
+            console.log(response)
             console.log(response.data.score);
             setRanks(response.data.score);
-            if(!response.status===200){
+            if(response.status !== 200){ // Fix this line
                 setpseudo(false)
                 notify('Api error ! Try again After sometime')
             }
             else if(response.status === 200){
+                setpseudo(false)
                 sortingRanks(Ranks,Folder,ObjectUrl);
-                setDataGet(true); //to enable the access for ModelOutput component in private routes
-                navigate('/ModelOutput');
+                 //to enable the access for ModelOutput component in private routes
+                // Use navigate function to redirect
             }
-            
             
         } catch (err) {
             setpseudo(false)
-            notify('Network error ! Check your Network connection')
+            notify('Network errror')
         }
         
     }
+    
     function sortingRanks(a,b,c){
         let arr = []
 
@@ -188,6 +190,7 @@ function Analyser() {
 
         arr.sort((a, b) => b.Rank - a.Rank);
         setCandidList(arr)
+        setDataGet(true);
 
     }
     
@@ -255,7 +258,9 @@ function Analyser() {
             </div>
         <div className="uploadfold"><button onClick={HandleUpload}>Upload Folder</button><button id='cancel' onClick={()=>{setFolder(null);
             fileRef.current.value='';
-        }}>Cancel</button>{AnalyseOpac?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}</div>
+        }}>Cancel</button>{AnalyseOpac?<button id='analyse' onClick={HandleFire}>Analyse</button>:<button id='analysefalse' title='Upload Folder to Analyse'>Analyse</button>}
+        <button onClick={()=>{navigate('/ModelOutput')}} className={DataGet ? 'block uploadfold' : 'none'}>View Ranks</button>
+        </div>
         
         <div className="translater">
             <div className={Opac?'folderupopac':'folderup'}>
